@@ -1,0 +1,257 @@
+$darkwater: #13a09e;
+
+
+//custon scrollbars
+
+body::-webkit-scrollbar-thumb{
+	background-color: green;
+}
+
+
+//general styles
+
+main{
+	margin: 0;
+	padding: 0;
+	display: flex;
+	border-bottom: complement($darkwater) solid 2px;
+}
+
+body, h4{
+	margin: 0;
+	font-family: 'Raleway', sans-serif;
+}
+
+
+header{
+	z-index: 20;
+	position: absolute;
+	top: 0;
+	right: 10px;
+	background-color: rgba(250,250,250,0.8);
+	white-space: nowrap;
+	padding: 1%;
+	border-radius: 10px;
+	h1{
+		margin: 0;
+		font-family: 'Baloo Bhaijaan', cursive;
+	}
+}
+
+label{
+	margin: 0 2%;
+}
+
+input, button{
+	border-radius: 12px;
+	border: darkcyan solid 1px;
+	padding: 0.5% 1.5%;
+	margin: 2% 3%;
+	background-color: beige;
+	max-width: 80%;
+}
+
+input[type="submit"], button{
+	color: black;
+	box-shadow: 0 1px 1px 0 black;
+	&:hover{
+		box-shadow: none;
+		background-color: darken(beige, 5);
+	}
+}
+
+.title{
+	color: darken(invert($darkwater), 30);
+	font-family: 'Baloo Bhaijaan', cursive;
+	font-style: italic;
+	text-align: right;
+	font-size: 13pt;
+	padding-left: 20px;
+}
+
+.leftSide{
+	border-right: solid complement($darkwater) 2px;
+	width: 20vw;
+	min-width: 150px;
+	max-width: 250px;
+	overflow: hidden;
+	background-color: $darkwater;
+	color: white;
+	font-size: 0.8em;
+	.controlPanel{
+		padding-top: 5px;
+	}
+	.placeList{
+		font-size: smaller;
+		overflow-x: hidden;
+		overflow-y: auto;
+		max-height: 50vh;
+		h4{
+			margin: 0;
+		}
+		ul{
+			border: solid invert($darkwater) 1px;
+			padding: 0;
+			background-color: darken($darkwater, 22);
+			li {
+				margin: 5px 0;
+				cursor: pointer;
+				padding-left: 15px;
+				span {
+					position: relative;
+					left: -0.5em;
+					width: 120%;
+				}
+				&:hover{
+					background: linear-gradient(to right, white 60%, $darkwater);
+					color: black;
+				}
+			}
+		}
+		
+	}
+}
+
+a{
+
+}
+
+.rightSide{
+	flex-grow: 1;
+	.map{
+		flex-grow: 1;
+		width: 100%;
+		position: relative;
+		right: 0;
+		height: 100vh;
+	}
+}
+
+
+
+.selectedMuseum{
+
+	width: 52vw;
+	max-height: 30vh;
+	overflow: auto;
+	font-size: 11pt;
+	position: absolute;
+	bottom: 0;
+	padding: 0 2%;
+	margin: 2% 2% 0.5% 33%;
+	border: double $darkwater 4px;
+	border-radius: 15px;
+	box-shadow: 2px 2px 2px black;
+	color: #534;
+	background-color: white;
+	z-index: 20;
+	h4{
+		padding-right: 27px;
+	}
+	.wikiImg{
+		width: 50%;
+		position: relative;
+		display: block;
+		margin: 4px;
+		float: right;
+	}
+	.hider{
+		position: absolute;
+		right: 5px;
+	}
+	.fakeLink{
+		color: darken(silver, 30);
+	}
+}
+
+
+.infoWindowImg{
+	height: 125px;
+	display: block;
+	border: solid black 1px;
+	margin: auto;
+}
+
+
+.fakeLink{
+	color: white;
+	text-decoration: underline;
+	cursor: pointer;
+	&:hover{
+		color: orange;
+	}
+}
+
+
+//for the about window
+
+.aboutOuter{
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 100vh;
+	width: 100vw;
+	background-color: rgba(30,30,30,0.4);
+	z-index: 90;
+	cursor: pointer;
+}
+
+.aboutInner{
+	color: black;
+	position: fixed;
+	margin: auto;
+	top: 30%;
+	left: 40%;
+	z-index: 100;
+	width: 40%;
+	background-color: white;
+	border: inset $darkwater 10px;
+	box-shadow: 0 0 500% 3px black;
+	cursor: initial;
+
+	p{
+		margin: 1%;
+		padding: 4%;
+	}
+	.closer{
+		color: grey;
+		position: absolute;
+		top: 0;
+		right: 5px;
+		cursor: pointer;
+		font-family: 'Baloo Bhaijaan', cursive;
+	}
+}
+
+
+//only used for the fallback content
+
+.v-center{
+	border: solid $darkwater 2px;
+	border-radius: 20px;
+	box-shadow: 2px 2px 5px 2px black;
+	top: 20%;
+	margin: 2%;
+	height: auto !important;
+	width: 96% !important;
+	text-align: justify;
+	p{
+		padding: 2%;
+	}
+}
+
+
+//media queries
+
+@media (min-width: 500px) and (orientation: portrait) {
+	.selectedMuseum{
+		width: 90%;
+		margin: 2%;
+		padding: 2%;
+		.wikiImg{
+			width: 100%;
+			display: block;
+		}
+	}
+}

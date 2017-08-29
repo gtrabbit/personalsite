@@ -1,0 +1,55 @@
+//==========Variables===========>>>>>>>
+
+$standard-border: solid black 1px;
+$textshadow: 2px 2px 3px white;
+$trans-offwhite: rgba(210,210,210,0.8);
+
+
+//========== mixins=========>>>>
+
+@mixin simple-border($color, $side){
+	border-#{$side}: {
+		color: $color;
+		width: 1px;
+		style: solid;
+	}
+}
+
+
+//========placeholders========>>>>>
+
+//===specifically for backdrops ===>>>>>
+
+%flexDad{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+}
+
+%four-page{
+	@extend %flexDad;
+	width: 100%;
+	height: auto;
+}
+
+%covering-background{
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+%backdrop-area{
+	@extend %four-page;
+	@extend %covering-background;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: 50% 0px;
+	background-color: black;
+}
+
+%border-top-and-bot{
+	border-bottom: $standard-border;
+	border-top: $standard-border;
+}
+
+

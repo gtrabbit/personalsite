@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="/assets/js/knockout.js"></script>
+	<script src="/assets/js/scripts.js"></script>
+	<script src="/assets/js/mapStyle.js"></script>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/assets/favicons/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicons/favicon-16x16.png">
+	<link rel="manifest" href="/manifest.json">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+	<meta name="theme-color" content="#ffffff">
+	
+	<link rel="stylesheet" type="text/css" href="/assets/css/styles.css">
+	<link href="https://fonts.googleapis.com/css?family=Baloo+Bhaijaan|Raleway" rel="stylesheet">
+
+	<title>Museum + Bubble Tea</title>
+</head>
+<body>
+
+	<main>
+		<header class="header">
+			<h1>
+				Museum + <span data-bind="text: searchFor" ></span>
+			</h1>
+		</header>
+
+	<div class="sidebar flexDiv leftSide">
+	<big class="title">Museum + _</big> 
+		<div class="controlPanel">
+
+			<label>After the museum, let's find... <br>
+				<input type="text" name="afterward" value="Bubble Tea" id="afterward" data-bind="textInput: searchFor" >
+			</label>
+			<form data-bind="submit: filterResults" >
+				<label for="filter">filter museums:</label><br>
+				<input type="text" name="filter" id="filter">
+				<input type="submit" name="dosubmit" id="submit" value="filter">
+				<span data-bind="visible: filtered" ><button data-bind="click: undoFilter" >Remove Filter</button></span>
+			</form>
+		</div>
+		<h4>
+			Museums:
+		</h4> 
+		<div id="placeList" class="placeList" >
+
+			<ul data-bind="foreach: markers"> 
+				<li data-bind="click: $parent.showItem, event: {mouseover: $parent.startBouncing, mouseout: $parent.endBouncing}" >
+					<span data-bind="text: title" ></span>
+				</li>
+			</ul>
+			
+		</div>
+		<div class="site-content" style="display: none" data-bind="visible: true">
+		<div class="selectedMuseum" id="museumDisplay" data-bind="visible: selectedMuseum, style: { maxHeight: hideMD() == true ? '11pt' : '30vh' }">
+			<div data-bind="if: selectedMuseum">
+				<a data-bind="click: hideElement" class="hider fakeLink">*hide* </a>
+				<h4 data-bind="text: selectedMuseum().title" ></h4>
+				<p data-bind="text: selectedMuseum().vicinity" ></p>
+			</div>
+			<div data-bind="if: selectedMuseumInfo"> <span data-bind="with: selectedMuseumInfo" >
+				<img data-bind="attr: {src: thumbnail.original}" class="wikiImg">
+				<span class="extract" data-bind="text: extract" > </span>
+				 <br>
+				
+			</div>
+			<br>
+			<a href="#directionsPanel"> Directions to <span data-bind="text: searchFor"></span> </a></span>
+
+
+		</div>
+		<br>
+		
+		&emsp;<a data-bind="click: toggleAbout" class="fakeLink">About</a>
+		&emsp;<a href="#directionsPanel" class="fakeLink">Directions</a>
+
+		
+		<div data-bind="visible: about, click: toggleAbout" class="aboutOuter">
+			<div class="aboutInner">
+				<p>
+					"Museum + _" integrates data from the Google Maps API, the Yelp Fusion API and the Wikimedia API to offer patrons of Pittsburgh museums an easy way of finding bubble tea, or other snacks, following their outting. This project was made by Chris Rune, with love, in August of 2017.
+				</p>
+			</div>
+
+		</div>
+		</div>
+
+	</div>
+
+	<div class="rightSide">
+		<div style="display: none" class="map v-center" id="GMfallback">
+			<p>
+				There was a problem loading Google Maps. Please check your network settings and try again
+			</p>			
+		</div>
+
+		<div id="map" class="map"></div>
+	</div>
+
+
+	</main>
+
+	<div id="directionsPanel" class="directionsPanel"></div>
+
+
+
+	<script async defer src="https://maps.googleapis.com/maps/api/js?libraries=places,geometry&key=AIzaSyCHQWxlixdMrK1f1L0d4EuwiOTPBjQmpes&v=3&callback=initMap"></script>
+<!-- 	timer to catch a failed map load... -->
+	<script type="text/javascript">
+			window.setTimeout(function(){
+				if (!map.loaded){
+					showFallback();
+				}
+			}, 8000)
+	</script>
+
+
+</body>
+</html>
