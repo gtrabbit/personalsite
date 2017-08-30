@@ -1,3 +1,8 @@
+'use strict';
+/* global google */
+/* global ko */
+/* global console */
+
 const map = {
 	markerList: [],
 	places: [],
@@ -11,12 +16,22 @@ const map = {
 	destinationMarker: null,
 	styles: null,
 	loaded: false
+};
 
-}
-
+const createMarker = function(place, bounce, star){
+	return new google.maps.Marker({
+		map: map.map,
+		icon: star ? '/assets/img/bluestar-16.png' : '/assets/img/arrow-213-16.png',
+		title: place.name,
+		position: place.geometry.location,
+		id: place.place_id,
+		vicinity: place.vicinity,
+		animation: bounce ? google.maps.Animation.BOUNCE : google.maps.Animation.DROP
+	});
+};
 
 //initialize the map
-function initMap(){
+function initMap(){    //jshint ignore:line
 	map.loaded = true;
 
 	map.DestInfoWindow = new google.maps.InfoWindow({
@@ -25,78 +40,79 @@ function initMap(){
 	});
 	map.directionsService = new google.maps.DirectionsService();
 	map.directionsDisplay = new google.maps.DirectionsRenderer({suppressMarkers: true});
-	
 	map.eastend = new google.maps.LatLng(
 		40.44862479999999,
-		-79.9578864)
+		-79.9578864);
 	map.map = new google.maps.Map(document.getElementById('map'), {
 		center: map.eastend,
 		zoom: 12,
 		styles: map.styles
 	});
 	map.service = new google.maps.places.PlacesService(map.map);
-	performSearch()
+	performSearch();
 }
 
+const turnBlue = function(){
+	this.icon = '/assets/img/bluearrow-213-16.png';
+};
+
+const becomeArrow = function(){
+	this.icon = '/assets/img/arrow-213-16.png';
+};
+
+const makeMarkers = function(results, i){
+	let marker = createMarker(results[i]);
+    marker.addListener('click', ()=>{
+    	findBubbleTea(marker);
+    	AppViewModel.selectedMuseum(marker);
+   	});
+   	marker.addListener('mouseover', turnBlue);
+   	marker.addListener('mouseout', becomeArrow);
+   	map.markerList.push(marker);
+   	AppViewModel.markers.push(marker);
+};
+
+const callback = function(results, status){
+
+		if (status == google.maps.places.PlacesServiceStatus.OK) {
+			map.places = results;
+			ko.applyBindings(AppViewModel);
+    		for (let i = 0; i < results.length; i++) {
+    			window.setTimeout(makeMarkers(results, i), i * 130);			
+    		}
+      		
+  		} else {
+  			console.log('status is ', status);
+  		}
+	};
 
 const performSearch = function(){
 	let request = {
 		location: map.eastend,
 		radius: '10000',
 		type: 'museum',
-	}
-	const callback = function(results, status){
+	};
 
-		if (status == google.maps.places.PlacesServiceStatus.OK) {
-			map.places = results;
-			ko.applyBindings(AppViewModel);
-    		for (let i = 0; i < results.length; i++) {
-    			window.setTimeout(function(){
-    				let marker = createMarker(results[i]);
-    				marker.addListener('click', ()=>{
-    					findBubbleTea(marker);
-    					AppViewModel.selectedMuseum(marker);
-    				})
-    				marker.addListener('mouseover', 
-    					function(){
-    						marker.icon = '/assets/img/bluearrow-213-16.png'
-    					})
-    				marker.addListener('mouseout', function(){
-    					marker.icon = '/assets/img/arrow-213-16.png'
-    				})
-      				map.markerList.push(marker);
-      				AppViewModel.markers.push(marker);
-      				// if (i+1 == results.length){
-      				// 	ko.applyBindings(AppViewModel);  //there should be a better place for this...
-      				// }
-    			}, i * 130)			
-    		}
-      		
-  		} else {
-  			console.log('status is ', status)
-  		}
-	}
-
-	map.service.nearbySearch(request, callback)
-}
+	map.service.nearbySearch(request, callback);
+};
 
 
 //finds Yelp reviews + directions
-const BTcallback = function(results, status){
+const BTcallback = function(results){
 		//grab directions before/while making call to Yelp
 	if (map.destinationMarker){
 		map.destinationMarker.setMap(null);
 	}
 	
-	getDirections(results[0].name)
+	getDirections(results[0].name);
 	map.destinationMarker = createMarker(results[0], true, true);
 	map.destinationMarker.addListener('click', function(){
-		map.DestInfoWindow.open(map.map, map.destinationMarker)
-	})
+		map.DestInfoWindow.open(map.map, map.destinationMarker);
+	});
 		//Yelp request has to be made via our server because of security, i guess
-	let xhr = new XMLHttpRequest()
-	xhr.open('GET', '/yelp/' + results[0].name + '/' + results[0].vicinity)
-	xhr.send()
+	let xhr = new XMLHttpRequest();
+	xhr.open('GET', '/yelp/' + results[0].name + '/' + results[0].vicinity);
+	xhr.send();
 	xhr.onreadystatechange = function(){
 		if (xhr.readyState == XMLHttpRequest.DONE){
 			if (xhr.status === 200){
@@ -109,15 +125,15 @@ const BTcallback = function(results, status){
 				}
 			}	
 		}
-	}
-}
+	};
+};
 
 
 const getWikiInfo = function(marker){
-	xhr = new XMLHttpRequest();
-	xhr.open('GET', 'http://en.wikipedia.org/api/rest_v1/page/summary/' + marker.title)
+	let xhr = new XMLHttpRequest();
+	xhr.open('GET', 'http://en.wikipedia.org/api/rest_v1/page/summary/' + marker.title);
 	//xhr.setRequestHeader('Api-User-Agent', 'www.chrisrune.com')
-	xhr.send()
+	xhr.send();
 	xhr.onreadystatechange = function(){
 		if (xhr.readyState == XMLHttpRequest.DONE){
 			if (xhr.status === 200){
@@ -132,8 +148,8 @@ const getWikiInfo = function(marker){
 				AppViewModel.selectedMuseumInfo(null);
 			}	
 		}
-	}
-}
+	};
+};
 
 
 //finds bubble tea by default-- user can change search term
@@ -143,18 +159,18 @@ const findBubbleTea = function(marker){
 
 	map.markerList.forEach(a=>{
 		AppViewModel.endBouncing(a);
-	})
+	});
 	AppViewModel.startBouncing(marker);
 
 	map.selectedMarker = marker;
 
-	request = {
+	let request = {
 		keyword: document.getElementById('afterward').value,
 		location: marker.position,
 		rankBy: google.maps.places.RankBy.DISTANCE
-	}
-	map.service.nearbySearch(request, BTcallback)
-}
+	};
+	map.service.nearbySearch(request, BTcallback);
+};
 
 
 const getDirections = function(dest){
@@ -162,8 +178,8 @@ const getDirections = function(dest){
 		origin: map.selectedMarker.title + ", Pittsburgh, PA",
 		destination: dest + ", Pittsburgh, PA",
 		travelMode: 'WALKING'
-	}
-	map.directionsDisplay.setMap(map.map)
+	};
+	map.directionsDisplay.setMap(map.map);
 	map.directionsDisplay.setPanel(document.getElementById('directionsPanel'));
 	map.directionsService.route(request, function(res, status){
 		if (status == 'OK'){
@@ -171,24 +187,14 @@ const getDirections = function(dest){
 		} else {
 			//handle error
 		}
-	})
-}
+	});
+};
 
 
-const createMarker = function(place, bounce, star){
-	return new google.maps.Marker({
-		map: map.map,
-		icon: star ? '/assets/img/bluestar-16.png' : '/assets/img/arrow-213-16.png',
-		title: place.name,
-		position: place.geometry.location,
-		id: place.place_id,
-		vicinity: place.vicinity,
-		animation: bounce ? google.maps.Animation.BOUNCE : google.maps.Animation.DROP
-	})
-}
+
 
 //define the view-model
-const AppViewModel = {
+const AppViewModel = {  //jshint ignore:line
 	markers: ko.observableArray(),
 	destination: ko.observable(map.destinationMarker),
 	filtered: ko.observable(false),
@@ -199,7 +205,12 @@ const AppViewModel = {
 	about: ko.observable(false),
 	weNeedFallback: ko.observable(false),
 	toggleAbout: function(){
-		this.about() ? this.about(false) : this.about(true);
+		if (this.about()){
+			this.about(false);
+		} else {
+			this.about(true);
+		}
+
 	},
 	showItem: (marker) => {
 		AppViewModel.selectedMuseum(marker);
@@ -211,10 +222,10 @@ const AppViewModel = {
 		}
 
 		this.filtered(true);
-		term = new RegExp(formEl.filter.value, ['i']);
+		let term = new RegExp(formEl.filter.value, ['i']);
 		this.markers().forEach(function(a){
-			a.setAnimation(google.maps.Animation.DROP)
-		})
+			a.setAnimation(google.maps.Animation.DROP);
+		});
 		this.markers(this.markers().filter(function(a){
 			if (!a.title.match(term)){
 				a.setMap(null);
@@ -222,28 +233,32 @@ const AppViewModel = {
 			} else {
 				return true;
 			}
-		}))
+		}));
 	},
 	undoFilter: function(){
 		this.filtered(false);
-		this.markers(map.markerList)
+		this.markers(map.markerList);
 		this.markers().forEach(function(a){
 			a.setMap(map.map);
-		})
+		});
 	},
 	startBouncing: function(marker){
-		marker.icon = '/assets/img/bluearrow-213-16.png'
+		marker.icon = '/assets/img/bluearrow-213-16.png';
 		marker.setAnimation(google.maps.Animation.BOUNCE);
 	},
 	endBouncing: function(marker){
-		marker.icon = '/assets/img/arrow-213-16.png'
+		marker.icon = '/assets/img/arrow-213-16.png';
 		marker.setAnimation(null);
 	},
-	hideElement: function(e){
-		this.hideMD() ? this.hideMD(false) : this.hideMD(true);	
+	hideElement: function(){
+		if (this.hideMD()) {
+			this.hideMD(false);
+		} else {
+			this.hideMD(true);
+		}
 	}
 
-}
+};
 
 const createInfoDisplay = function(response){
 	let header = "<h4>" + response.name + "</h4>";
@@ -253,11 +268,10 @@ const createInfoDisplay = function(response){
 	let rating = "Rated " + response.rating + " on Yelp with <a target='_blank' href='" + response.url + "'> (" + response.review_count + ") reviews </a>";
 	return header + photo + open + address + rating;
 
-}
+};
     		
 
 
-const showFallback = function(){
-		document.getElementById('GMfallback').style.display = 'block'
-	}
-
+const showFallback = function(){ //jshint ignore: line
+		document.getElementById('GMfallback').style.display = 'block';
+	};

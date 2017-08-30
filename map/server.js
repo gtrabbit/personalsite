@@ -1,8 +1,10 @@
+/* jshint node: true */
+'use strict';
+
 //basics
 const express = require('express');
 const app = express();
 const path = require('path');
-const bodyParser = require('body-parser');
 const http = require('http');
 const yelp = require('yelp-fusion');
 
@@ -18,7 +20,6 @@ let server = http.createServer(app);
 
 //middleware
 app.use('/assets', express.static(path.join(__dirname, '/assets')));
-let jsonParser = bodyParser.json();
 
 
 //authorization with yelp
@@ -27,9 +28,9 @@ const client_secret = 'srPUwdZ9qE0BNQGOfePxuSJrDmPh9jQdZBR5oX8QtsLWXDjjQATihDMsw
 let yelpClient;
 //creates a yelp client with the auth token
 yelp.accessToken(client_id, client_secret).then(response =>{
-	yelpClient = yelp.client(response.jsonBody.access_token)
+	yelpClient = yelp.client(response.jsonBody.access_token);
 }).catch(e =>{
-	console.log(e)
+	console.log(e);
 });
 
 
@@ -37,8 +38,7 @@ yelp.accessToken(client_id, client_secret).then(response =>{
 
 app.get('/', function(req, res){
 	res.sendFile(path.join(__dirname + '/index.html'));
-})
-
+});
 
 app.get('/yelp/:name/:loc', function(req, res){
 	yelpClient.search({
@@ -48,22 +48,16 @@ app.get('/yelp/:name/:loc', function(req, res){
 
 	}).then(response =>{
 		// yelpClient.
-		res.send(response.jsonBody.businesses[0])
+		res.send(response.jsonBody.businesses[0]);
 	}).catch(e => {
   		console.log(e);
 	});
 
-})
-
-
-
-
-
+});
 
 
 //listening....
 server.listen(port, function(){
 	let port = server.address().port;
 	console.log('listening on http://%s', port);
-})
-
+});
