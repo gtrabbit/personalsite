@@ -203,6 +203,7 @@ const AppViewModel = new function(){  //jshint ignore:line
 	this.searchFor = ko.observable('Bubble Tea');
 	this.about = ko.observable(false);
 	this.weNeedFallback = ko.observable(false);
+	this.hiderText = ko.observable('*hide*');
 	this.visibleMuseums = ko.computed(()=>{
 		if (this.filterWord()){
 			let filter = this.filterWord();
@@ -259,14 +260,16 @@ const AppViewModel = new function(){  //jshint ignore:line
 	};
 	this.hideElement = function(){
 		if (this.hideMD()) {
+			this.hiderText('*hide*')
 			this.hideMD(false);
 		} else {
 			this.hideMD(true);
+			this.hiderText('*show*')
 		}
 	};
 	this.slideUp = (data, event)=>{
 		let h = event.target.parentNode.style.height;
-		event.target.parentNode.style.height = h == "12px" ? "30vh" : "12px";
+		event.target.parentNode.style.height = h == "12px" ? "33vh" : "12px";
 		if (this.sliderText() == '▼'){
 			this.sliderText('▲')
 		} else {

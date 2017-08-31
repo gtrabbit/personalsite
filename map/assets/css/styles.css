@@ -26,7 +26,10 @@ header {
 footer {
   min-height: 100px;
   background-color: brown;
-  border-top: solid #13a09e 2px; }
+  border-top: solid #13a09e 2px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; }
 
 label {
   margin: 0 2%; }
@@ -63,7 +66,7 @@ input[type="submit"], button {
   background-color: #13a09e;
   color: white;
   font-size: 0.8em;
-  position: relative;
+  position: static;
   transition: height 1s; }
   .leftSide .slider {
     position: absolute;
@@ -83,7 +86,7 @@ input[type="submit"], button {
     font-size: smaller;
     overflow-x: hidden;
     overflow-y: auto;
-    max-height: 50vh; }
+    max-height: 80vh; }
     .leftSide .placeList h4 {
       margin: 0; }
     .leftSide .placeList ul {
@@ -214,24 +217,26 @@ input[type="submit"], button {
     flex-direction: column;
     flex-wrap: wrap; }
     main .leftSide {
-      height: 30vh; }
+      height: 33vh; }
       main .leftSide .slider {
         display: block; }
-    main .leftSide, main .rightSide, main header {
-      width: 100%;
+    main .leftSide, main header {
+      width: calc(100% - 4px);
       max-width: 100%;
       display: flex;
-      flex-wrap: wrap; }
-      main .leftSide .placeList, main .leftSide big, main .leftSide .controlPanel, main .rightSide .placeList, main .rightSide big, main .rightSide .controlPanel, main header .placeList, main header big, main header .controlPanel {
-        flex-grow: 1;
-        width: 100%; }
-      main .leftSide big, main .rightSide big, main header big {
+      flex-wrap: wrap;
+      position: relative; }
+      main .leftSide .placeList, main .leftSide big, main .leftSide .controlPanel, main header .placeList, main header big, main header .controlPanel {
+        width: calc(100% - 4px); }
+        main .leftSide .placeList label, main .leftSide big label, main .leftSide .controlPanel label, main header .placeList label, main header big label, main header .controlPanel label {
+          width: 45%; }
+      main .leftSide big, main header big {
         display: none; }
-      main .leftSide .placeList, main .rightSide .placeList, main header .placeList {
+      main .leftSide .placeList, main header .placeList {
         height: 20vh; }
-      main .leftSide .controlPanel, main .rightSide .controlPanel, main header .controlPanel {
+      main .leftSide .controlPanel, main header .controlPanel {
         display: flex; }
-      main .leftSide .aboutInner, main .rightSide .aboutInner, main header .aboutInner {
+      main .leftSide .aboutInner, main header .aboutInner {
         width: 90%;
         left: 2%; }
     main header {

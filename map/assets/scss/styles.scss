@@ -41,6 +41,9 @@ footer{
 	min-height: 100px;
 	background-color: brown;
 	border-top: solid $darkwater 2px;
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
 }
 
 label{
@@ -83,7 +86,7 @@ input[type="submit"], button{
 	background-color: $darkwater;
 	color: white;
 	font-size: 0.8em;
-	position: relative;
+	position: static;
 	transition: height 1s;
 	.slider{
 			position: absolute;
@@ -107,7 +110,7 @@ input[type="submit"], button{
 		font-size: smaller;
 		overflow-x: hidden;
 		overflow-y: auto;
-		max-height: 50vh;
+		max-height: 80vh;
 		h4{
 			margin: 0;
 		}
@@ -284,19 +287,23 @@ a{
 		flex-direction: column;
 		flex-wrap: wrap;
 		.leftSide{
-			height: 30vh;
+			height: 33vh;
 			.slider{
 				display: block;
 			}
 		}
-		.leftSide, .rightSide, header{
-			width: 100%;
+		.leftSide, header{
+			width: calc(100% - 4px);
 			max-width: 100%;
 			display: flex;
 			flex-wrap: wrap;
+			position: relative;
 			.placeList, big, .controlPanel {
-				flex-grow: 1;
-				width: 100%
+				//flex-grow: 1;
+				width: calc(100% - 4px);
+				label {
+					width: 45%;
+				}
 			}
 			big {
 				display: none;

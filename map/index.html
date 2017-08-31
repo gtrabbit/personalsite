@@ -53,9 +53,23 @@
 			
 		</div>
 		<div class="navigation-links" style="display: none" data-bind="visible: true">
-		<div class="selectedMuseum" id="museumDisplay" data-bind="visible: selectedMuseum, style: { maxHeight: hideMD() == true ? '11pt' : '30vh' }">
+
+		&emsp;<a data-bind="click: toggleAbout" class="fakeLink">About</a>
+		&emsp;<a href="#directionsPanel" class="fakeLink">Directions</a>
+
+		
+		<div data-bind="visible: about, click: toggleAbout" class="aboutOuter">
+			<div class="aboutInner">
+				<p>
+					"Museum + _" integrates data from the Google Maps API, the Yelp Fusion API and the Wikimedia API to offer patrons of Pittsburgh museums an easy way of finding bubble tea, or other snacks, following their outting. This project was made by Chris Rune, with love, in August of 2017.
+				</p>
+			</div>
+
+		</div>
+		</div>
+				<div class="selectedMuseum" id="museumDisplay" data-bind="visible: selectedMuseum, style: { maxHeight: hideMD() == true ? '11pt' : '30vh' }">
 			<div data-bind="if: selectedMuseum">
-				<a data-bind="click: hideElement" class="hider fakeLink">*hide* </a>
+				<a data-bind="click: hideElement, text: hiderText" class="hider fakeLink"> </a>
 				<h4 data-bind="text: selectedMuseum().title" ></h4>
 				<p data-bind="text: selectedMuseum().vicinity" ></p>
 			</div>
@@ -73,21 +87,6 @@
 
 
 		</div>
-		<br>
-		
-		&emsp;<a data-bind="click: toggleAbout" class="fakeLink">About</a>
-		&emsp;<a href="#directionsPanel" class="fakeLink">Directions</a>
-
-		
-		<div data-bind="visible: about, click: toggleAbout" class="aboutOuter">
-			<div class="aboutInner">
-				<p>
-					"Museum + _" integrates data from the Google Maps API, the Yelp Fusion API and the Wikimedia API to offer patrons of Pittsburgh museums an easy way of finding bubble tea, or other snacks, following their outting. This project was made by Chris Rune, with love, in August of 2017.
-				</p>
-			</div>
-
-		</div>
-		</div>
 		<a class="fakeLink slider" data-bind="click: slideUp, text: sliderText" >  </a>
 	</div>
 
@@ -101,10 +100,12 @@
 		<div id="map" class="map"></div>
 	</div>
 
-	<div id="directionsPanel" class="directionsPanel"></div>
+	
 	</main>
-
-	<footer></footer>
+	<div id="directionsPanel" class="directionsPanel"></div>
+	<footer>
+		<a data-bind="click: toggleAbout" class="fakeLink">About</a>
+	</footer>
 
 	
 
