@@ -67,7 +67,7 @@
 
 		</div>
 		</div>
-				<div class="selectedMuseum" id="museumDisplay" data-bind="visible: selectedMuseum, style: { maxHeight: hideMD() == true ? '11pt' : '30vh' }">
+			<div class="selectedMuseum" id="museumDisplay" data-bind="visible: selectedMuseum, style: { maxHeight: hideMD() == true ? '11pt' : '30vh' }" style="display: none">
 			<div data-bind="if: selectedMuseum">
 				<a data-bind="click: hideElement, text: hiderText" class="hider fakeLink"> </a>
 				<h4 data-bind="text: selectedMuseum().title" ></h4>
