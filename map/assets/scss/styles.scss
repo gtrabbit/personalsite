@@ -94,6 +94,7 @@ input[type="submit"], button{
 			padding-top: 2%;
 			z-index: 5;
 			color: orange;
+			display: none;
 			&:hover{
 				color: darken(orange, 13);
 			}
@@ -284,6 +285,9 @@ a{
 		flex-wrap: wrap;
 		.leftSide{
 			height: 30vh;
+			.slider{
+				display: block;
+			}
 		}
 		.leftSide, .rightSide, header{
 			width: 100%;

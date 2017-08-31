@@ -73,7 +73,8 @@ input[type="submit"], button {
     text-align: center;
     padding-top: 2%;
     z-index: 5;
-    color: orange; }
+    color: orange;
+    display: none; }
     .leftSide .slider:hover {
       color: #bd7a00; }
     .leftSide .slider .controlPanel {
@@ -214,6 +215,8 @@ input[type="submit"], button {
     flex-wrap: wrap; }
     main .leftSide {
       height: 30vh; }
+      main .leftSide .slider {
+        display: block; }
     main .leftSide, main .rightSide, main header {
       width: 100%;
       max-width: 100%;
