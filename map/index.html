@@ -14,6 +14,7 @@
 	
 	<link rel="stylesheet" type="text/css" href="/assets/css/styles.css">
 	<link href="https://fonts.googleapis.com/css?family=Baloo+Bhaijaan|Raleway" rel="stylesheet">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<title>Museum + Bubble Tea</title>
 </head>
@@ -30,40 +31,42 @@
 	<big class="title">Museum + _</big> 
 		<div class="controlPanel">
 
-			<label>After the museum, let's find... <br>
+			<label>After the museum... <br>
 				<input type="text" name="afterward" value="Bubble Tea" id="afterward" data-bind="textInput: searchFor" >
 			</label>
-			<form data-bind="submit: filterResults" >
-				<label for="filter">filter museums:</label><br>
-				<input type="text" name="filter" id="filter">
-				<input type="submit" name="dosubmit" id="submit" value="filter">
-				<span data-bind="visible: filtered" ><button data-bind="click: undoFilter" >Remove Filter</button></span>
-			</form>
+			
+				<label for="filter">filter museums:
+				<input type="text" data-bind="textInput: filterWord" ></label>
+				
+			
 		</div>
-		<h4>
-			Museums:
-		</h4> 
-		<div id="placeList" class="placeList" >
 
-			<ul data-bind="foreach: markers"> 
+		<div id="placeList" class="placeList" >
+			<h4>
+				Museums:
+			</h4> 
+			<ul data-bind="foreach: visibleMuseums"> 
 				<li data-bind="click: $parent.showItem, event: {mouseover: $parent.startBouncing, mouseout: $parent.endBouncing}" >
 					<span data-bind="text: title" ></span>
 				</li>
 			</ul>
 			
 		</div>
-		<div class="site-content" style="display: none" data-bind="visible: true">
+		<div class="navigation-links" style="display: none" data-bind="visible: true">
 		<div class="selectedMuseum" id="museumDisplay" data-bind="visible: selectedMuseum, style: { maxHeight: hideMD() == true ? '11pt' : '30vh' }">
 			<div data-bind="if: selectedMuseum">
 				<a data-bind="click: hideElement" class="hider fakeLink">*hide* </a>
 				<h4 data-bind="text: selectedMuseum().title" ></h4>
 				<p data-bind="text: selectedMuseum().vicinity" ></p>
 			</div>
-			<div data-bind="if: selectedMuseumInfo"> <span data-bind="with: selectedMuseumInfo" >
-				<img data-bind="attr: {src: thumbnail.original}" class="wikiImg">
-				<span class="extract" data-bind="text: extract" > </span>
-				 <br>
+			<div data-bind="if: selectedMuseumInfo()"> <span data-bind="with: selectedMuseumInfo()" >
 				
+				<span data-bind="if: $parent.selectedMuseumInfo().hasOwnProperty('thumbnail')">
+					<img data-bind="attr: {src: thumbnail.original}" class="wikiImg">
+				</span> 
+				<span class="extract" data-bind="html: extract_html" > </span>
+				 <br>
+				<small><a href="https://www.wikipedia.org" target="_blank"> Wikipedia</a></small>
 			</div>
 			<br>
 			<a href="#directionsPanel"> Directions to <span data-bind="text: searchFor"></span> </a></span>
@@ -85,11 +88,11 @@
 
 		</div>
 		</div>
-
+		<a class="fakeLink slider" data-bind="click: slideUp, text: sliderText" >  </a>
 	</div>
 
 	<div class="rightSide">
-		<div style="display: none" class="map v-center" id="GMfallback">
+		<div style="display: none" data-bind="visible: weNeedFallback" class="map v-center" id="GMfallback">
 			<p>
 				There was a problem loading Google Maps. Please check your network settings and try again
 			</p>			
@@ -98,22 +101,17 @@
 		<div id="map" class="map"></div>
 	</div>
 
-
+	<div id="directionsPanel" class="directionsPanel"></div>
 	</main>
 
-	<div id="directionsPanel" class="directionsPanel"></div>
+	<footer></footer>
+
+	
 
 
 
-	<script async defer src="https://maps.googleapis.com/maps/api/js?libraries=places,geometry&key=AIzaSyCHQWxlixdMrK1f1L0d4EuwiOTPBjQmpes&v=3&callback=initMap"></script>
-<!-- 	timer to catch a failed map load... -->
-	<script type="text/javascript">
-			window.setTimeout(function(){
-				if (!map.loaded){
-					showFallback();
-				}
-			}, 8000)
-	</script>
+	<script async defer src="https://maps.googleapis.com/maps/api/js?libraries=places,geometry&key=AIzaSyCHQWxlixdMrK1f1L0d4EuwiOTPBjQmpes&v=3&callback=initMap" onerror="showFallback()"></script>
+
 
 
 </body>

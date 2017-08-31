@@ -14,7 +14,6 @@ main{
 	margin: 0;
 	padding: 0;
 	display: flex;
-	border-bottom: complement($darkwater) solid 2px;
 }
 
 body, h4{
@@ -36,6 +35,12 @@ header{
 		margin: 0;
 		font-family: 'Baloo Bhaijaan', cursive;
 	}
+}
+
+footer{
+	min-height: 100px;
+	background-color: brown;
+	border-top: solid $darkwater 2px;
 }
 
 label{
@@ -70,7 +75,7 @@ input[type="submit"], button{
 }
 
 .leftSide{
-	border-right: solid complement($darkwater) 2px;
+	border: solid complement($darkwater) 2px;
 	width: 20vw;
 	min-width: 150px;
 	max-width: 250px;
@@ -78,8 +83,24 @@ input[type="submit"], button{
 	background-color: $darkwater;
 	color: white;
 	font-size: 0.8em;
+	position: relative;
+	transition: height 1s;
+	.slider{
+			position: absolute;
+			bottom: 0;
+			width: 100%;
+			background-color: lighten($darkwater, 15);
+			text-align: center;
+			padding-top: 2%;
+			z-index: 5;
+			color: orange;
+			&:hover{
+				color: darken(orange, 13);
+			}
 	.controlPanel{
 		padding-top: 5px;
+		
+		}
 	}
 	.placeList{
 		font-size: smaller;
@@ -130,7 +151,7 @@ a{
 
 
 .selectedMuseum{
-
+	transition: max-height 1s;
 	width: 52vw;
 	max-height: 30vh;
 	overflow: auto;
@@ -207,7 +228,6 @@ a{
 	width: 40%;
 	background-color: white;
 	border: inset $darkwater 10px;
-	box-shadow: 0 0 500% 3px black;
 	cursor: initial;
 
 	p{
@@ -223,6 +243,8 @@ a{
 		font-family: 'Baloo Bhaijaan', cursive;
 	}
 }
+
+
 
 
 //only used for the fallback content
@@ -244,14 +266,61 @@ a{
 
 //media queries
 
-@media (min-width: 500px) and (orientation: portrait) {
+@media (min-width: 300px) and (orientation: portrait) {
 	.selectedMuseum{
 		width: 90%;
-		margin: 2%;
+		margin: auto;
 		padding: 2%;
+		bottom: 2%;
+		position: fixed;
 		.wikiImg{
 			width: 100%;
 			display: block;
+		}
+	}
+
+	main {
+		flex-direction: column;
+		flex-wrap: wrap;
+		.leftSide{
+			height: 30vh;
+		}
+		.leftSide, .rightSide, header{
+			width: 100%;
+			max-width: 100%;
+			display: flex;
+			flex-wrap: wrap;
+			.placeList, big, .controlPanel {
+				flex-grow: 1;
+				width: 100%
+			}
+			big {
+				display: none;
+			}
+			.placeList {
+				height: 20vh;
+			}
+			.controlPanel{
+				display: flex;
+			}
+			.aboutInner{
+				width: 90%;
+				left: 2%;
+			}
+		}
+		header {
+			position: relative;
+			background-color: $darkwater;
+			color: white;
+			right: 0;
+			border-radius: 0;
+			border-bottom: solid invert($darkwater) 2px;
+			width: 98vw;
+			padding: 1vw;
+			h1 {
+				margin: auto;
+			}
+
 		}
 	}
 }

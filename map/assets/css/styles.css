@@ -4,8 +4,7 @@ body::-webkit-scrollbar-thumb {
 main {
   margin: 0;
   padding: 0;
-  display: flex;
-  border-bottom: #a01315 solid 2px; }
+  display: flex; }
 
 body, h4 {
   margin: 0;
@@ -23,6 +22,11 @@ header {
   header h1 {
     margin: 0;
     font-family: 'Baloo Bhaijaan', cursive; }
+
+footer {
+  min-height: 100px;
+  background-color: brown;
+  border-top: solid #13a09e 2px; }
 
 label {
   margin: 0 2%; }
@@ -51,16 +55,29 @@ input[type="submit"], button {
   padding-left: 20px; }
 
 .leftSide {
-  border-right: solid #a01315 2px;
+  border: solid #a01315 2px;
   width: 20vw;
   min-width: 150px;
   max-width: 250px;
   overflow: hidden;
   background-color: #13a09e;
   color: white;
-  font-size: 0.8em; }
-  .leftSide .controlPanel {
-    padding-top: 5px; }
+  font-size: 0.8em;
+  position: relative;
+  transition: height 1s; }
+  .leftSide .slider {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: #1ce4e1;
+    text-align: center;
+    padding-top: 2%;
+    z-index: 5;
+    color: orange; }
+    .leftSide .slider:hover {
+      color: #bd7a00; }
+    .leftSide .slider .controlPanel {
+      padding-top: 5px; }
   .leftSide .placeList {
     font-size: smaller;
     overflow-x: hidden;
@@ -94,6 +111,7 @@ input[type="submit"], button {
     height: 100vh; }
 
 .selectedMuseum {
+  transition: max-height 1s;
   width: 52vw;
   max-height: 30vh;
   overflow: auto;
@@ -156,7 +174,6 @@ input[type="submit"], button {
   width: 40%;
   background-color: white;
   border: inset #13a09e 10px;
-  box-shadow: 0 0 500% 3px black;
   cursor: initial; }
   .aboutInner p {
     margin: 1%;
@@ -181,13 +198,49 @@ input[type="submit"], button {
   .v-center p {
     padding: 2%; }
 
-@media (min-width: 500px) and (orientation: portrait) {
+@media (min-width: 300px) and (orientation: portrait) {
   .selectedMuseum {
     width: 90%;
-    margin: 2%;
-    padding: 2%; }
+    margin: auto;
+    padding: 2%;
+    bottom: 2%;
+    position: fixed; }
     .selectedMuseum .wikiImg {
       width: 100%;
-      display: block; } }
+      display: block; }
+
+  main {
+    flex-direction: column;
+    flex-wrap: wrap; }
+    main .leftSide {
+      height: 30vh; }
+    main .leftSide, main .rightSide, main header {
+      width: 100%;
+      max-width: 100%;
+      display: flex;
+      flex-wrap: wrap; }
+      main .leftSide .placeList, main .leftSide big, main .leftSide .controlPanel, main .rightSide .placeList, main .rightSide big, main .rightSide .controlPanel, main header .placeList, main header big, main header .controlPanel {
+        flex-grow: 1;
+        width: 100%; }
+      main .leftSide big, main .rightSide big, main header big {
+        display: none; }
+      main .leftSide .placeList, main .rightSide .placeList, main header .placeList {
+        height: 20vh; }
+      main .leftSide .controlPanel, main .rightSide .controlPanel, main header .controlPanel {
+        display: flex; }
+      main .leftSide .aboutInner, main .rightSide .aboutInner, main header .aboutInner {
+        width: 90%;
+        left: 2%; }
+    main header {
+      position: relative;
+      background-color: #13a09e;
+      color: white;
+      right: 0;
+      border-radius: 0;
+      border-bottom: solid #ec5f61 2px;
+      width: 98vw;
+      padding: 1vw; }
+      main header h1 {
+        margin: auto; } }
 
 /*# sourceMappingURL=styles.css.map */

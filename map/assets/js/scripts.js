@@ -61,15 +61,18 @@ const becomeArrow = function(){
 };
 
 const makeMarkers = function(results, i){
-	let marker = createMarker(results[i]);
-    marker.addListener('click', ()=>{
-    	findBubbleTea(marker);
+	window.setTimeout(()=>{
+		let marker = createMarker(results[i]);
+    	marker.addListener('click', ()=>{
+    		findBubbleTea(marker);
     	AppViewModel.selectedMuseum(marker);
    	});
    	marker.addListener('mouseover', turnBlue);
    	marker.addListener('mouseout', becomeArrow);
    	map.markerList.push(marker);
    	AppViewModel.markers.push(marker);
+	}, i * 130)
+
 };
 
 const callback = function(results, status){
@@ -78,7 +81,7 @@ const callback = function(results, status){
 			map.places = results;
 			ko.applyBindings(AppViewModel);
     		for (let i = 0; i < results.length; i++) {
-    			window.setTimeout(makeMarkers(results, i), i * 130);			
+    			makeMarkers(results, i);			
     		}
       		
   		} else {
@@ -109,46 +112,41 @@ const BTcallback = function(results){
 	map.destinationMarker.addListener('click', function(){
 		map.DestInfoWindow.open(map.map, map.destinationMarker);
 	});
-		//Yelp request has to be made via our server because of security, i guess
-	let xhr = new XMLHttpRequest();
-	xhr.open('GET', '/yelp/' + results[0].name + '/' + results[0].vicinity);
-	xhr.send();
-	xhr.onreadystatechange = function(){
-		if (xhr.readyState == XMLHttpRequest.DONE){
-			if (xhr.status === 200){
-				let response = null;
-				//check if we got a response
-				if (xhr.responseText){
-					response = JSON.parse(xhr.responseText);
-					map.DestInfoWindow.setContent(createInfoDisplay(response));
-					map.DestInfoWindow.open(map.map, map.destinationMarker);
-				}
-			}	
-		}
-	};
+		
+
+	//Yelp request has to be made via our server because of security, i guess
+	fetch('/yelp/' + results[0].name  + '/' + results[0].vicinity, {
+		method: 'get'
+	}).then(function(response){
+		return response.json();
+		
+	}).then(function(jso){
+		map.DestInfoWindow.setContent(createInfoDisplay(jso));
+		map.DestInfoWindow.open(map.map, map.destinationMarker);
+	}) .catch((err)=>{
+		console.log(err)
+		map.DestInfoWindow.setContent('Could not find this location on Yelp');
+		map.DestInfoWindow.open(map.map, map.destinationMarker);
+	})
 };
 
 
 const getWikiInfo = function(marker){
-	let xhr = new XMLHttpRequest();
-	xhr.open('GET', 'http://en.wikipedia.org/api/rest_v1/page/summary/' + marker.title);
-	//xhr.setRequestHeader('Api-User-Agent', 'www.chrisrune.com')
-	xhr.send();
-	xhr.onreadystatechange = function(){
-		if (xhr.readyState == XMLHttpRequest.DONE){
-			if (xhr.status === 200){
-				let response = null;
-				//check if we got a response
-				if (xhr.responseText){
-					response = JSON.parse(xhr.responseText);
-					
-				}
-				AppViewModel.selectedMuseumInfo(response);
-			} else {
-				AppViewModel.selectedMuseumInfo(null);
-			}	
-		}
-	};
+
+	fetch('http://en.wikipedia.org/api/rest_v1/page/summary/' + marker.title, {
+		method: 'get'
+	}).then(function(response){
+		return response.json();
+	}).then(function(jso){
+		AppViewModel.selectedMuseumInfo(jso);
+	}).catch(err=>{
+		console.log(err);
+		AppViewModel.selectedMuseumInfo({
+			extract_html: '<p>No Wikipedia page for this location.</p>',
+		})
+	})
+
+
 };
 
 
@@ -165,7 +163,7 @@ const findBubbleTea = function(marker){
 	map.selectedMarker = marker;
 
 	let request = {
-		keyword: document.getElementById('afterward').value,
+		keyword: AppViewModel.searchFor(),
 		location: marker.position,
 		rankBy: google.maps.places.RankBy.DISTANCE
 	};
@@ -194,71 +192,91 @@ const getDirections = function(dest){
 
 
 //define the view-model
-const AppViewModel = {  //jshint ignore:line
-	markers: ko.observableArray(),
-	destination: ko.observable(map.destinationMarker),
-	filtered: ko.observable(false),
-	selectedMuseum: ko.observable(null),
-	selectedMuseumInfo: ko.observable(null),
-	hideMD: ko.observable(false),
-	searchFor: ko.observable('Bubble Tea'),
-	about: ko.observable(false),
-	weNeedFallback: ko.observable(false),
-	toggleAbout: function(){
+const AppViewModel = new function(){  //jshint ignore:line
+	this.markers = ko.observableArray();
+	this.destination = ko.observable(map.destinationMarker);
+	this.filtered = ko.observable(false);
+	this.filterWord = ko.observable('');
+	this.selectedMuseum = ko.observable(null);
+	this.selectedMuseumInfo = ko.observable(null);
+	this.hideMD = ko.observable(false);
+	this.searchFor = ko.observable('Bubble Tea');
+	this.about = ko.observable(false);
+	this.weNeedFallback = ko.observable(false);
+	this.visibleMuseums = ko.computed(()=>{
+		if (this.filterWord()){
+			let filter = this.filterWord();
+			return this.markers().filter(function(a){
+				if (a.title.match(new RegExp(filter, 'i'))){
+					if (!a.visible) a.setVisible(true);
+					return true;
+
+				} else {
+					a.setVisible(false);
+					a.setAnimation(google.maps.Animation.DROP)
+					return false;
+				}
+				
+			});
+		} else {
+			this.markers().forEach(a=>{
+				if (!a.visible){
+					a.setAnimation(google.maps.Animation.DROP);
+					a.setVisible(true);
+				}
+
+			})
+			return this.markers();
+		}
+	});
+	this.toggleAbout = function(){
 		if (this.about()){
 			this.about(false);
 		} else {
 			this.about(true);
 		}
 
-	},
-	showItem: (marker) => {
-		AppViewModel.selectedMuseum(marker);
+	};
+	this.showItem = (marker) => {
+		this.selectedMuseum(marker);
 		findBubbleTea(marker);
-	},
-	filterResults: function(formEl){
-		if (this.filtered()){
-			this.undoFilter();
-		}
+	};
 
-		this.filtered(true);
-		let term = new RegExp(formEl.filter.value, ['i']);
-		this.markers().forEach(function(a){
-			a.setAnimation(google.maps.Animation.DROP);
-		});
-		this.markers(this.markers().filter(function(a){
-			if (!a.title.match(term)){
-				a.setMap(null);
-				return false;
-			} else {
-				return true;
-			}
-		}));
-	},
-	undoFilter: function(){
+	this.undoFilter = function(){
 		this.filtered(false);
 		this.markers(map.markerList);
 		this.markers().forEach(function(a){
 			a.setMap(map.map);
 		});
-	},
-	startBouncing: function(marker){
+	};
+	this.startBouncing = function(marker){
 		marker.icon = '/assets/img/bluearrow-213-16.png';
 		marker.setAnimation(google.maps.Animation.BOUNCE);
-	},
-	endBouncing: function(marker){
+	};
+	this.endBouncing = function(marker){
 		marker.icon = '/assets/img/arrow-213-16.png';
 		marker.setAnimation(null);
-	},
-	hideElement: function(){
+	};
+	this.hideElement = function(){
 		if (this.hideMD()) {
 			this.hideMD(false);
 		} else {
 			this.hideMD(true);
 		}
-	}
+	};
+	this.slideUp = (data, event)=>{
+		let h = event.target.parentNode.style.height;
+		event.target.parentNode.style.height = h == "12px" ? "30vh" : "12px";
+		if (this.sliderText() == '▼'){
+			this.sliderText('▲')
+		} else {
+			this.sliderText('▼');
+		}
+	};
+	this.sliderText = ko.observable('▲');
 
 };
+
 
 const createInfoDisplay = function(response){
 	let header = "<h4>" + response.name + "</h4>";
@@ -273,5 +291,6 @@ const createInfoDisplay = function(response){
 
 
 const showFallback = function(){ //jshint ignore: line
-		document.getElementById('GMfallback').style.display = 'block';
-	};
+	AppViewModel.weNeedFallback(true);
+	ko.applyBindings(AppViewModel);
+};
