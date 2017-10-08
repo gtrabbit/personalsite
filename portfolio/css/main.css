@@ -1,22 +1,26 @@
-.orange-backdrop1, .blue-backdrop1, .blue-backdrop2, .full-page, .white-section, .black-section, .auto-page {
+.first-break blockquote, .first-break figcaption {
+  font-style: italic;
+  color: whitesmoke;
+  text-shadow: 1px 2px 3px #505050;
+  font-family: 'Artifika', serif;
+  font-weight: 900; }
+
+.orange-backdrop1, .blue-backdrop1, .blue-backdrop2, .first-break, .full-page, .white-section, .black-section, .auto-page {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around; }
 
-.orange-backdrop1, .blue-backdrop1, .blue-backdrop2 {
+.orange-backdrop1, .blue-backdrop1, .blue-backdrop2, .first-break {
   width: 100%;
   height: auto; }
 
-.orange-backdrop1, .blue-backdrop1, .blue-backdrop2, .pic, .mask-off {
+.orange-backdrop1, .blue-backdrop1, .blue-backdrop2, .first-break, .pic, .mask-off {
   background-size: cover;
   background-repeat: no-repeat; }
 
-.orange-backdrop1, .blue-backdrop1, .blue-backdrop2 {
-  background-size: cover;
-  background-repeat: no-repeat;
+.orange-backdrop1, .blue-backdrop1, .blue-backdrop2, .first-break {
   background-attachment: fixed;
-  background-position: 50% 0px;
-  background-color: black; }
+  background-position: 50% 0px; }
 
 .white-section, .black-section, .screen {
   border-bottom: solid black 1px;
@@ -89,11 +93,13 @@ a {
   flex-grow: 1; }
 
 .social {
-  height: 39px;
-  width: 39px;
+  height: 28px;
+  width: 28px;
+  line-height: 28px;
   transition: opacity 0.5s;
   border-radius: 50%;
-  opacity: 0.6; }
+  opacity: 0.6;
+  background-color: black; }
   .social:hover {
     opacity: 1; }
 
@@ -105,8 +111,7 @@ a {
 .full-page, .white-section, .black-section {
   overflow: hidden;
   height: 100vh;
-  width: 100%;
-  color: white; }
+  width: 100%; }
 
 .auto-page {
   overflow: hidden;
@@ -138,67 +143,68 @@ a {
   background-image: url("../images/other/portrait.jpg");
   background-position: 90%;
   border-radius: 50%;
-  border: solid silver 2px;
+  border: solid #b8420f 2px;
   height: 180px;
   width: 180px;
   margin: 3%; }
 
 .landing {
-  align-items: center;
-  color: white; }
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  border-bottom: solid #3f4f73 5px; }
   .landing .middle {
-    width: 92%;
-    padding: 3%;
+    width: 100%;
+    padding: 3% 0;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    top: -5%;
-    position: relative;
-    color: silver; }
+    justify-content: space-around;
+    align-items: center; }
     .landing .middle .intro-text {
       width: 50%;
       flex-grow: 1;
       font-size: 16pt;
-      text-align: justify; }
+      text-align: justify;
+      border-top: solid #b8420f 5px; }
       .landing .middle .intro-text .intro-text-content {
-        border-bottom-color: white;
-        border-bottom-width: 1px;
-        border-bottom-style: solid;
-        padding: 2%; }
-      .landing .middle .intro-text .intro-under {
-        padding: 2%; }
+        margin: 5% 5% 5% 20%;
+        padding: 10px;
+        box-shadow: 5px 5px 5px 5px silver; }
   .landing .tagline {
     height: 30px;
     line-height: 30px;
-    flex-grow: 1;
     width: 100%;
-    margin-right: 25%;
-    border-top-color: #3f4f73;
-    border-top-width: 1px;
-    border-top-style: solid;
-    padding: 3%;
+    border-bottom-color: #3f4f73;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    padding: 0 3%;
+    flex-grow: 1;
     display: flex;
-    justify-content: space-around;
-    align-self: flex-end; }
+    justify-content: space-between;
+    background-color: #3f4f73;
+    white-space: nowrap; }
     .landing .tagline span {
-      flex-grow: 1;
-      text-align: center; }
+      display: flex;
+      margin: 0 8%; }
+      .landing .tagline span a {
+        display: flex;
+        align-items: center; }
     .landing .tagline nav {
-      font-size: 16pt;
+      margin: 0 3%;
+      font-size: 11pt;
       display: flex;
       justify-content: space-around;
-      flex-grow: 3;
       font-family: 'Artifika', serif; }
       .landing .tagline nav span {
         color: #3f4f73; }
+      .landing .tagline nav a {
+        margin: 0 6%; }
     .landing .tagline a {
       color: #c0b08c;
       text-decoration: none;
       margin: 0% 2%;
       transition: color 0.5s; }
       .landing .tagline a:hover {
-        color: #3f4f73; }
+        color: white; }
     .landing .tagline .right {
       position: absolute;
       right: 15vw;
@@ -207,12 +213,11 @@ a {
       color: white;
       cursor: pointer; }
   .landing .front-heading {
-    text-align: left;
+    white-space: nowrap;
     width: 100%;
     margin-left: 25%;
     margin-bottom: 2%;
-    padding: 3%;
-    color: white; }
+    margin-top: 5%; }
     .landing .front-heading h1 {
       border-bottom-color: #3f4f73;
       border-bottom-width: 1px;
@@ -222,9 +227,21 @@ a {
     .landing .front-heading span {
       padding-left: 15%; }
 
+.first-break {
+  height: 50vh;
+  width: 100%;
+  display: flex;
+  align-content: center;
+  background-image: url(../images/backdrops/leaves-tall.jpg); }
+  .first-break blockquote {
+    margin: 5%;
+    width: 100%;
+    font-size: 16pt; }
+  .first-break figcaption {
+    font-size: 16pt; }
+
 .preview {
   align-items: center;
-  padding: 2%;
   flex-wrap: wrap;
   padding-top: 10%;
   font-size: 16pt; }
@@ -594,15 +611,8 @@ a {
 
   .landing .front-heading {
     margin-left: 10%; }
-  .landing .pic, .landing .mask-off {
-    height: 100px;
-    width: 100px; }
   .landing .tagline {
-    font-size: 11pt;
-    margin-right: 0;
-    align-self: initial; }
-    .landing .tagline .right {
-      bottom: 200px; }
+    height: 50px; }
     .landing .tagline span .social {
       height: 28px;
       width: 28px; } }
@@ -628,20 +638,17 @@ a {
     width: 90%; }
 
   .landing .front-heading {
-    margin-left: 0; }
+    margin-left: 0;
+    flex-grow: 1; }
     .landing .front-heading h1 {
       font-size: 34pt; }
     .landing .front-heading span {
       font-size: 11pt; }
   .landing .intro-under {
     display: none; }
-  .landing .middle {
-    line-height: 16pt; }
-    .landing .middle .intro-text {
-      width: 100%;
-      font-size: 16pt; }
-    .landing .middle .pic, .landing .middle .mask-off {
-      display: none; }
+  .landing .middle .intro-text {
+    width: 100%;
+    font-size: 16pt; }
   .landing .tagline {
     align-self: center;
     position: relative;

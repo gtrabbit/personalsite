@@ -95,11 +95,13 @@ a{
 	}
 
 	.social{
-		height: 39px;
-		width: 39px;
+		height: 28px;
+		width: 28px;
+		line-height: 28px;
 		transition: opacity 0.5s;
 		border-radius: 50%;
 		opacity: 0.6;
+		background-color: black;
 		&:hover{
 			opacity: 1;
 		}
@@ -118,7 +120,7 @@ a{
 	overflow: hidden;
 	height: 100vh;
 	width: 100%;
-	color: white;
+
 }
 
 .auto-page{
@@ -169,39 +171,35 @@ a{
 	background-image: url('../images/other/portrait.jpg');
 	background-position: 90%;
 	border-radius: 50%;
-	border: solid silver 2px;
+	border: solid $link-color1 2px;
 	height: 180px;
 	width: 180px;
 	margin: 3%;
 }
 
 .landing{
-	align-items: center;
-	color: white;
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	border-bottom: solid $link-color 5px;
 	.middle{
-		width: 92%;
-		padding: 3%;
+		width: 100%;
+		padding: 3% 0;
 		display: flex;
-		justify-content: center;
+		justify-content: space-around;
 		align-items: center;
-		flex-wrap: wrap;
-		top: -5%;
-		position: relative;
-		color: silver;
-		//box-shadow: 1px 4px 12px 3px rgb(50,50,50);
 		.intro-text{
 			width: 50%;
 			flex-grow: 1;
 			font-size: $med-font;
 			text-align: justify;
+			border-top: solid $link-color1 5px;
 			.intro-text-content{
-				@include simple-border(white, 'bottom');
-				padding: 2%;				
+				margin: 5% 5% 5% 20%;
+				padding: 10px;
+				box-shadow: 5px 5px 5px 5px silver;				
 			}
-			.intro-under{
-				padding: 2%;
 
-			}
 
 		}
 
@@ -213,27 +211,34 @@ a{
 	.tagline{
 		height: 30px;
 		line-height: 30px;
-		flex-grow: 1;
 		width: 100%;
-		margin-right: 25%;
-		@include simple-border($link-color, 'top');
-		padding: 3%;
+		@include simple-border($link-color, 'bottom');
+		padding: 0 3%;
+		flex-grow: 1;
 		display: flex;
-		justify-content: space-around;
-		align-self: flex-end;
+		justify-content: space-between;
+		background-color: $link-color;
+		white-space: nowrap;
 		span{
-			flex-grow: 1;
-			text-align: center;
+			display: flex;
+			margin: 0 8%;
+			a{
+				display: flex;
+				align-items: center;
+			}
 		}
 
 		nav{
-			font-size: $med-font;
+			margin: 0 3%;
+			font-size: $small-font;
 			display: flex;
 			justify-content: space-around;
-			flex-grow: 3;
 			font-family: 'Artifika', serif;
 			span{
 				color: $link-color;
+			}
+			a {
+				margin: 0 6%;
 			}
 		}
 	
@@ -243,7 +248,7 @@ a{
 			margin: 0% 2%;
 			transition: color 0.5s;
 			&:hover{
-				color: $link-color;
+				color: white;
 				}
 			}
 			.right{
@@ -258,6 +263,8 @@ a{
 	}
 
 	.front-heading{
+		white-space: nowrap;
+		width: 100%;
 		h1{
 			@include simple-border($link-color, 'bottom');
 			padding-left: 5%;
@@ -266,12 +273,31 @@ a{
 		span{
 			padding-left: 15%;
 		}
-		text-align: left;
-		width: 100%;
 		margin-left: 25%;
 		margin-bottom: 2%;
-		padding: 3%;
-		color: white;
+		margin-top: 5%;
+
+	}
+}
+
+
+.first-break {
+	height: 50vh;
+	width: 100%;
+	display: flex;
+	align-content: center;
+	@extend %backdrop-area;
+	background-image: url(../images/backdrops/leaves-tall.jpg);
+	
+	blockquote{
+		@extend %emphasis;
+		margin: 5%;
+		width: 100%;
+		font-size: $med-font;
+	}
+	figcaption{
+		@extend %emphasis;
+		font-size: $med-font;
 
 	}
 }
@@ -281,7 +307,6 @@ a{
 
 .preview{
 	align-items: center;
-	padding: 2%;
 	flex-wrap: wrap;
 	padding-top: 10%;
 	font-size: $med-font;
@@ -823,17 +848,8 @@ $margin-width: 15px;
 		.front-heading{
 			margin-left: 10%;
 		}
-		.pic{
-			height: 100px;
-			width: 100px;
-		}
 		.tagline{
-			font-size: $small-font;
-			margin-right: 0;
-			align-self: initial;
-			.right{
-				bottom: 200px;
-			}
+			height: 50px;
 			span{
 				.social{
 					height: 28px;
@@ -888,6 +904,7 @@ $margin-width: 15px;
 	.landing{
 		.front-heading{
 			margin-left: 0;
+			flex-grow: 1;
 			h1{
 				font-size: $big-font;
 			}
@@ -899,14 +916,9 @@ $margin-width: 15px;
 			display: none;
 		}
 		.middle{
-			line-height: 16pt;
-			
 			.intro-text{
 				width: 100%;
 				font-size: $med-font;
-			}
-			.pic{
-				display: none;
 			}
 		}
 		.tagline{

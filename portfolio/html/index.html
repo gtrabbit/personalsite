@@ -11,108 +11,43 @@
 </head>
 <body>
 	<main>
-		<section class="blue-backdrop1 parallax" data-inverse="true" data-first="true">
-			<div class="full-page landing">
-			<header class="front-heading">
-				<h1> Chris Rune </h1>
-				<span>(aspiring) web developer</span>
-			</header>
-				
-				<div class="middle">
-					<div class="intro-text">
-						<p class="intro-text-content">
-							I am a new developer eager to grow and expand my skillset. I have worked mostly with the MEAN (MongoDB, Express.js, Angular + Node.js) stack, but am always excited to try out new technologies. 
-						</p>
-						<div class="intro-under">
-							<p>This portfolio features some of my most recent projects. Have a look around, and let me know what you think.</p>
-						</div>
-					</div>
-					<div class="pic">
-						
-					</div>
-
-
-				</div>
-				<div class="tagline">
+		<section class="landing">
+			<div class="tagline">
 					<span>
 						<a href="https://github.com/gtrabbit"><img class="social" src="../images/other/codepenlogo.png"></a>
 						<a href="http://codepen.io/gtrabbit/"><img src="../images/other/github-logo-icon-30.png" class="social"></a>
 						<a href="https://www.linkedin.com/in/chris-rune-6579b510a/"><img src="../images/other/linkedlogo.png" class="social"></a>
-
 					</span>
-					
-				
-		
-						 <nav class="nav">
-						 	<span>< </span> <a href="#" id="aboutLink" class="navLink"> about me </a> <a href="#" id="projectsLink" class="navLink"> projects </a> <a href="#" id="contactLink" class="navLink"> contact </a> <span> > </span>
-						 </nav> 
-
-					<big class="right"><a id="scrollButton">↓</a></big>
-					
-				</div>
+					<nav class="nav">
+						<a href="#" id="aboutLink" class="navLink"> about me </a> <a href="#" id="projectsLink" class="navLink"> projects </a> <a href="#" id="contactLink" class="navLink"> contact </a> 
+					</nav> 
 			</div>
-			<div class="auto-page preview" id="preview">
+			<header class="front-heading">
+				<h1> Chris Rune </h1>
+				<span>full-stack web developer</span>
+			</header>
+				
+			<div class="middle">
+				<div class="intro-text">
+					<p class="intro-text-content">
+						As a developer with a strong creative background, I am keenly focused on the human experience of the digital landscape. This portfolio showcases some of my most recent projects. Have a look around and let me know what you think.
+					</p>
+
+
+				</div>
+				<div class="pic"></div>
+			</div>
+		</section>
+		<section class="first-break parallax">
+			<blockquote>"like each tucked string tells..."</blockquote>
+			<figcaption>-Gerard Manley Hopkins</figcaption>
+		</section>
+		<section class="skills">
+			<h2>Buzz Words</h2>
+
+		</section>
 			
 
-			<div class="sphere fader"> Skills </div>
-			<div class="preview-box">
-				<div class="list-wrapper">
-					<ul class="fader"> <span>MEAN stack:</span>
-						<li> MongoDB </li>
-						<li> Express.js </li>
-						<li> Angular </li>
-						<li> Node.js </li>
-					</ul>
-					<ul class="fader"> <span> Build / deployment tools </span>
-						<li>SASS</li>
-						<li>git(hub)</li>
-						<li>Heroku</li>
-						<li>AWS</li>
-					</ul>
-
-					<ul class="fader"> <span> CMS </span>
-						<li>Wordpress</li>
-					</ul>
-
-					<ul class="fader"> <span> Frameworks / Libraries </span>
-						<li>Bootstrap</li>
-						<li>jQuery</li>
-						<li>AJAX / REST APIs</li>
-					</ul>
-		
-				</div>
-			</div>
-
-			<div class="sphere fader"> Projects, </div>
-			<div class="preview-box">
-				<div class="list-wrapper">
-					<ul>
-						<li>
-							Single-page Applications
-						</li>
-						<li>
-							Consuming APIs
-						</li>
-						<li>
-							Games
-						</li>
-						<li>
-							Wordpress Themes
-						</li>						
-					</ul>
-				</div>			
-			</div>
-
-			<div class="sphere fader"> & Me </div>
-			<div class="preview-box">
-				
-				<p> I am self-taught, and still finding my niche. So far, I most enjoy working with Javascript and more back-end oriented tasks. I do have a strong command of CSS, but left to my own devices as a designer, will just abuse blend-modes and make a bunch of circles (cf. this page).</p>
-			</div>
-
-			
-		
-
-			</div>
 			<div class="auto-page" id="projects">
 				<div class="automagic" id="automagic">
 					<h2 class="fader"> Projects </h2>
@@ -242,8 +177,6 @@
 				
 				<div class="img-wrapper timer small fader"><a href="https://codepen.io/gtrabbit/pen/QKoKPx" target="_blank"><h3>Timer</h3></a></div>
 				
-			<!-- 	<div class="img-wrapper twitch small"><h3>Twitch.tv Channel Viewer</h3></div> -->
-				
 				<div class="img-wrapper wiki small fader"><a href="https://codepen.io/gtrabbit/pen/ggObgN" target="_blank"><h3>Wikipedia API</h3></a></div>
 				
 				<div class="img-wrapper weather small fader"><a href="https://codepen.io/gtrabbit/pen/mAwAXg" target="_blank"><h3>Weather App</h3></a></div>
@@ -254,22 +187,7 @@
 
 				<div class="img-wrapper portfolio small fader"><a href="https://github.com/gtrabbit/portfolio" target="_blank"><h3>This Portfolio?</h3></a></div>
 			</div>
-			<div class="black-section rogue-like" id="rogueLike">
-				<h2 class="fader"> Javascript Rogue-Like </h2>
-				<div class="rl-wrapper" id="rlWrapper">
-				<p id="clickMsg">
-					Click to Play <br>
-				(requires a full-sized display)
-				</p>
-				
-					<div id="allScreens" class="allScreens">
-    					<div id="mainDisplays" class="mainDisplays"></div>
-					</div>
-				</div>
-				<p> --- Controls with the numpad. Press '?' for help screen --- <br>
-				Game screen is NOT responsive. You will need a full-sized display. Sorry.</p>
-				
-			</div>
+
 		</section>
 		<section class="blue-backdrop2 parallax">
 			<div class="auto-page">
@@ -357,47 +275,6 @@
 
 	<script type="text/javascript" src="../js/scripts.js" ></script>
 
-<!-- 	=========-RL-scripts============== -->
-
-	<script type="text/javascript" src="../rl/libs/rot.min.js"></script>
-        <script type="text/javascript" src="../rl/libs/sprintf.min.js" ></script>
-        <script type="text/javascript" src="../rl/game.js"></script>
-        <script type="text/javascript" src="../rl/utilities.js"></script>
-        <script type="text/javascript" src="../rl/repository.js" ></script>
-        <script type="text/javascript" src="../rl/geometry.js"></script>
-        <script type="text/javascript" src="../rl/glyph.js"></script>
-        <script type="text/javascript" src="../rl/dynamicglyph.js"></script>
-        <script type="text/javascript" src="../rl/screens/mainScreens.js" ></script>
-        <script type="text/javascript" src="../rl/screens/itemScreens.js" ></script>
-        <script type="text/javascript" src="../rl/screens/targetScreens.js" ></script>
-        <script type="text/javascript" src="../rl/screens/levelupscreens.js" ></script>
-        <script type="text/javascript" src="../rl/screens/playScreen.js" ></script>
-        <script type="text/javascript" src="../rl/skills/active/activeskills.js" ></script>
-        <script type="text/javascript" src="../rl/skills/passives/abilities.js" ></script>
-        <script type="text/javascript" src="../rl/skills/passives/weapon-proficiencies.js" ></script>
-        <script type="text/javascript" src="../rl/skills/skill.js" ></script>
-        <script type="text/javascript" src="../rl/tile.js"></script>
-        <script type="text/javascript" src="../rl/builder.js"></script>
-        <script type="text/javascript" src="../rl/map.js"></script>
-        <script type="text/javascript" src="../rl/entity.js" ></script>
-        <script type="text/javascript" src="../rl/statuses/statuses.js" ></script>
-        <script type="text/javascript" src="../rl/mixins/basicMixins.js" ></script>
-        <script type="text/javascript" src="../rl/mixins/behaviors.js" ></script>
-        <script type="text/javascript" src="../rl/mixins/destructibleANDattacker.js" ></script>
-        <script type="text/javascript" src="../rl/mixins/EQbased.js" ></script>
-        <script type="text/javascript" src="../rl/mixins/casterMixin.js" ></script>
-        
-        <script type="text/javascript" src="../rl/items/item.js" ></script>
-        <script type="text/javascript" src="../rl/items/itemmixins.js" ></script>
-        <script type="text/javascript" src="../rl/items/itemTemplates.js" ></script>
-        <script type="text/javascript" src="../rl/items/prefixesAndsuffixes.js" ></script>
-        <script type="text/javascript" src="../rl/items/itemFactory.js" ></script>
-         <script type="text/javascript" src="../rl/items/itemSelector.js" ></script>
-         <script type="text/javascript" src="../rl/classtemplates.js"></script>
-        <script type="text/javascript" src="../rl/entities.js" ></script>
-        <script type="text/javascript" src="../rl/items/items.js" ></script>
-        <script type="text/javascript" src="../rl/maps/cave.js" ></script>
-        <script type="text/javascript" src="../rl/maps/bosscavern.js" ></script>
 
 
 </body>
