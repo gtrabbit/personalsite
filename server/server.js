@@ -14,7 +14,7 @@ const nodemailer = require('nodemailer');
 
 
 //starting server
-let port = normalizePort(process.env.PORT || 8080);
+let port = normalizePort(process.env.PORT || 8888);
 app.set('port', port);
 
 let server = http.createServer(app);

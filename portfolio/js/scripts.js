@@ -74,19 +74,27 @@ const smoothScroll = function(elID){
 const makeScrolly = function(){
 	let faders = Array.from(document.getElementsByClassName('fader'));
 	let paraEls = Array.from(document.getElementsByClassName('parallax'));
-
+	let flags = document.getElementById('flags');
+	let count = 0;
 	window.onscroll = ()=>{
-		console.log("scroll happens")
-		faders.forEach(function(a){
+		if (count % 4 === 0){
+			faders.forEach(function(a){
 	 		a.style.opacity =  1 - Math.pow( Math.abs( ( ( (window.innerHeight - (a.scrollHeight  ) )  /2) - (a.offsetTop - window.scrollY ) ) / (window.innerHeight/2)  ), 3 )
 	 		})
 		paraEls.forEach((el) => {
 			value = (window.pageYOffset - el.offsetTop + window.innerHeight)
 			let yPos = -(value / 8);
 			let coords = '50% ' + yPos + 'px';
-			//console.log(coords)
 			el.style.backgroundPosition = coords;
-		})	
+		})
+		// let colorValue = (window.pageYOffset - flags.offsetTop + window.innerHeight)/10;
+		// console.log( 250-colorValue);
+		// let color = "rgb(" + (250 - colorValue) + ", " + (250 - colorValue) + ", " + (250 - colorValue) + ")";
+		// flags.style.backgroundColor = color;
+		} else {
+			count++;
+		}
+	
 
 	}
 	

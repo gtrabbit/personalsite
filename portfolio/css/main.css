@@ -1,24 +1,24 @@
 .first-break blockquote, .first-break figcaption {
   font-style: italic;
   color: whitesmoke;
-  text-shadow: 1px 2px 3px #505050;
+  text-shadow: 1px 2px 4px #505050;
   font-family: 'Artifika', serif;
   font-weight: 900; }
 
-.orange-backdrop1, .blue-backdrop1, .blue-backdrop2, .first-break, .full-page, .white-section, .black-section, .auto-page {
+.blue-backdrop2, .first-break, .full-page, .white-section, .black-section, .auto-page {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around; }
 
-.orange-backdrop1, .blue-backdrop1, .blue-backdrop2, .first-break {
+.blue-backdrop2, .first-break {
   width: 100%;
   height: auto; }
 
-.orange-backdrop1, .blue-backdrop1, .blue-backdrop2, .first-break, .pic, .mask-off {
+.blue-backdrop2, .first-break, .landing .middle .pic, .mask-off {
   background-size: cover;
   background-repeat: no-repeat; }
 
-.orange-backdrop1, .blue-backdrop1, .blue-backdrop2, .first-break {
+.blue-backdrop2, .first-break {
   background-attachment: fixed;
   background-position: 50% 0px; }
 
@@ -30,20 +30,27 @@ body, p {
   margin: 0px;
   font-family: 'Open Sans Condensed', sans-serif; }
 
-h1, h2, .wordpress h3, h3, h4, h5 {
+h1, h2, .img-wrapper a p, h3, .wordpress h4, h4, h5 {
   margin: 0;
   font-family: 'Artifika', serif;
   text-rendering: optimizeLegibility; }
 
 h1 {
-  font-size: 38pt;
-  font-weight: 500; }
+  font-size: 42pt;
+  font-weight: 500;
+  text-shadow: 2px 2px 2px darkslategrey; }
 
-h2, .wordpress h3 {
+h2, .img-wrapper a p {
   text-align: center;
   margin: 2% 1%;
-  font-size: 34pt;
-  text-shadow: 2px 2px 2px darkslategrey; }
+  font-size: 34pt; }
+
+h3, .wordpress h4 {
+  font-size: 26pt; }
+
+hr {
+  width: 80%;
+  color: darkslategrey; }
 
 a {
   color: #b8420f;
@@ -76,8 +83,10 @@ a {
   min-width: 100px; }
 
 .medium {
-  width: 40vw;
-  height: 20vh;
+  width: 70vw;
+  max-width: 80%;
+  height: 30vh;
+  max-height: 300px;
   flex-grow: 1; }
 
 .large {
@@ -115,7 +124,6 @@ a {
 
 .auto-page {
   overflow: hidden;
-  height: auto;
   width: 100%;
   color: white; }
 
@@ -127,53 +135,70 @@ a {
   background-color: black;
   color: white; }
 
-.orange-backdrop1 {
-  background-image: url("../images/backdrops/leaves-tall.jpg");
-  background-blend-mode: color-dodge; }
-
-.blue-backdrop1 {
-  background-image: url("../images/backdrops/trees-tall.jpg");
-  background-blend-mode: soft-light; }
-
 .blue-backdrop2 {
   background-image: url("../images/backdrops/prayerflags-tall.jpg");
   background-blend-mode: exclusion; }
-
-.pic, .mask-off {
-  background-image: url("../images/other/portrait.jpg");
-  background-position: 90%;
-  border-radius: 50%;
-  border: solid #b8420f 2px;
-  height: 180px;
-  width: 180px;
-  margin: 3%; }
 
 .landing {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  border-bottom: solid #3f4f73 5px; }
+  justify-content: space-between;
+  align-items: center;
+  text-rendering: optimizeLegibility; }
   .landing .middle {
-    width: 100%;
-    padding: 3% 0;
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 80%;
+    max-width: 800px;
+    flex-grow: 4;
+    margin: auto;
     display: flex;
-    justify-content: space-around;
-    align-items: center; }
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    background-image: url(../images/other/curly-open.png); }
     .landing .middle .intro-text {
-      width: 50%;
       flex-grow: 1;
       font-size: 16pt;
-      text-align: justify;
-      border-top: solid #b8420f 5px; }
+      text-align: justify; }
       .landing .middle .intro-text .intro-text-content {
-        margin: 5% 5% 5% 20%;
+        width: 70%;
+        margin: 5% auto;
         padding: 10px;
-        box-shadow: 5px 5px 5px 5px silver; }
+        box-shadow: 3px 5px 3px 3px silver; }
+    .landing .middle .project-links {
+      width: 80%;
+      text-align: center; }
+      .landing .middle .project-links a {
+        margin: 1% 5%;
+        white-space: nowrap; }
+    .landing .middle .pic {
+      background-image: url("../images/other/portrait.jpg");
+      background-position: 90%;
+      border-radius: 50%;
+      border: solid #b8420f 2px;
+      min-width: 180px;
+      height: 180px;
+      margin: 3%; }
+  .landing .front-heading {
+    white-space: nowrap;
+    flex: 1;
+    justify-self: flex-end; }
+    .landing .front-heading h1 {
+      border-bottom-color: #3f4f73;
+      border-bottom-width: 1px;
+      border-bottom-style: solid;
+      padding-left: 5%;
+      font-size: 5vw; }
+    .landing .front-heading span {
+      padding-left: 15%;
+      font-size: 16pt; }
   .landing .tagline {
-    height: 30px;
-    line-height: 30px;
+    height: 50px;
     width: 100%;
-    border-bottom-color: #3f4f73;
+    line-height: 30px;
+    border-bottom-color: black;
     border-bottom-width: 1px;
     border-bottom-style: solid;
     padding: 0 3%;
@@ -192,8 +217,12 @@ a {
       margin: 0 3%;
       font-size: 11pt;
       display: flex;
+      flex-wrap: wrap;
+      line-height: 12pt;
       justify-content: space-around;
-      font-family: 'Artifika', serif; }
+      font-family: 'Artifika', serif;
+      overflow: hidden;
+      align-items: center; }
       .landing .tagline nav span {
         color: #3f4f73; }
       .landing .tagline nav a {
@@ -205,30 +234,9 @@ a {
       transition: color 0.5s; }
       .landing .tagline a:hover {
         color: white; }
-    .landing .tagline .right {
-      position: absolute;
-      right: 15vw;
-      bottom: 30px;
-      font-size: 34pt;
-      color: white;
-      cursor: pointer; }
-  .landing .front-heading {
-    white-space: nowrap;
-    width: 100%;
-    margin-left: 25%;
-    margin-bottom: 2%;
-    margin-top: 5%; }
-    .landing .front-heading h1 {
-      border-bottom-color: #3f4f73;
-      border-bottom-width: 1px;
-      border-bottom-style: solid;
-      padding-left: 5%;
-      font-size: 38pt; }
-    .landing .front-heading span {
-      padding-left: 15%; }
 
 .first-break {
-  height: 50vh;
+  height: 70vh;
   width: 100%;
   display: flex;
   align-content: center;
@@ -236,134 +244,98 @@ a {
   .first-break blockquote {
     margin: 5%;
     width: 100%;
-    font-size: 16pt; }
+    font-size: 26pt; }
   .first-break figcaption {
     font-size: 16pt; }
+  .first-break .quote-holder {
+    width: 50%;
+    margin: auto; }
 
-.preview {
-  align-items: center;
-  flex-wrap: wrap;
-  padding-top: 10%;
-  font-size: 16pt; }
+.icon {
+  height: 100px;
+  margin: 15px; }
 
-.sphere {
-  border-radius: 50%;
-  height: 180px;
-  width: 180px;
-  border: solid darkolivegreen 3px;
+.icons {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  font-size: 28pt;
-  background-color: rgba(30, 30, 30, 0.6);
-  margin: 4% 1%;
-  font-family: 'Artifika', serif; }
-
-.right {
-  order: -1; }
-
-.preview-box {
-  padding: 1%;
-  width: 70%;
-  flex-grow: 1; }
-  .preview-box ul, .preview-box p {
-    padding: 2%;
-    flex-grow: 1;
-    background-color: rgba(55, 55, 55, 0.5); }
-
-.list-wrapper {
-  display: flex;
-  justify-content: space-around;
   flex-wrap: wrap; }
-  .list-wrapper span {
-    font-size: 16pt;
-    font-weight: 700; }
-  .list-wrapper ul {
-    padding: 3%;
-    margin: 1%;
-    min-width: 150px; }
-    .list-wrapper ul li {
-      padding: 2px;
-      margin: 5px;
-      flex-grow: 1;
-      border-radius: 15px;
-      color: white;
-      font-size: 16pt; }
-
-.holder {
-  height: auto;
-  border-radius: 5px;
-  width: 92%;
-  background-color: white;
-  margin: 3% auto;
-  box-shadow: 1px 2px 5px 2px #191f1f, 1px 2px 5px 2px white;
-  padding: 1%; }
-  .holder .img-wrapper {
-    border: solid #47bdf0 2px; }
-  .holder blockquote {
-    border-bottom: dashed silver 1px;
-    width: 100%;
-    margin: 1%;
-    font-style: italic; }
-  .holder cite {
-    margin-left: 60px;
-    font-style: normal; }
-    .holder cite::before {
-      content: "--"; }
-  .holder p {
-    line-height: 120%; }
-
-.holder.smaller {
-  width: 86%; }
-
-.automagic {
-  font-size: 16pt;
-  color: black;
-  background-color: transparent; }
-  .automagic .holder.big {
-    width: 100%;
-    border-radius: 0; }
-  .automagic .auto1 {
-    background-image: url("../images/project-icons/automagic.jpg"); }
-  .automagic h2, .automagic .wordpress h3, .wordpress .automagic h3 {
-    color: white; }
-  .automagic * p {
-    margin: 3% 1%;
-    font-size: 16pt;
-    color: #282828; }
-
-.auto2 {
-  background-image: url("../images/project-icons/amranks.jpg"); }
-
-.auto3 {
-  background-image: url("../images/project-icons/am3admin.jpg");
-  background-position: 0px 0px; }
-
-.automagic-details {
-  height: auto; }
-  .automagic-details p {
-    margin: 10px;
-    padding: 0 2%;
-    font-size: 16pt;
-    text-align: justify; }
-
-.automagic-afterthoughts {
-  align-items: center;
-  padding: 2%;
-  min-height: 100vh; }
-  .automagic-afterthoughts .holder {
-    width: 70%;
-    background-color: #412319;
-    color: white;
+  .icons div {
+    border: solid silver 1px;
+    background-color: #fffcfa;
+    display: flex;
+    flex-wrap: wrap;
     flex-grow: 1;
     margin: 2%;
-    border: solid white 1px; }
-    .automagic-afterthoughts .holder p {
-      margin: 10px;
-      padding: 0 2%;
-      font-size: 16pt;
-      text-align: justify; }
+    padding: 2% 1%;
+    justify-content: center; }
+    .icons div h3, .icons div .wordpress h4, .wordpress .icons div h4 {
+      width: 100%;
+      text-align: center;
+      text-decoration: underline italic; }
+
+.img-wrapper {
+  display: inline-flex;
+  align-items: center;
+  overflow: hidden;
+  background-color: black;
+  background-blend-mode: normal; }
+  .img-wrapper:hover {
+    background-blend-mode: luminosity; }
+    .img-wrapper:hover a {
+      padding: 50% 0;
+      background-color: rgba(220, 220, 220, 0.4);
+      color: #ef733e; }
+  .img-wrapper a {
+    background-color: rgba(50, 50, 50, 0.6);
+    text-align: center;
+    width: 100%;
+    color: white;
+    font-weight: 800;
+    font-size: 16pt;
+    text-decoration: none;
+    transition: all 0.5s;
+    text-shadow: 1px 1px 1px black; }
+    .img-wrapper a p {
+      margin: 2% 0;
+      font-size: 34pt; }
+
+.projects {
+  border-top: solid #3f4f73 4px;
+  width: 100%;
+  overflow: hidden;
+  justify-content: space-evenly;
+  display: flex;
+  flex-wrap: wrap; }
+  .projects .project-desc.automagic-project {
+    flex-grow: 2;
+    width: 100%; }
+  .projects h2, .projects .img-wrapper a p, .img-wrapper a .projects p, .projects h3, .projects .wordpress h4, .wordpress .projects h4 {
+    width: 100%;
+    text-align: center; }
+  .projects .project-icon {
+    width: 300px;
+    border: solid black 3px;
+    border-radius: 8px; }
+  .projects .project-text {
+    font-weight: 600; }
+  .projects blockquote {
+    font-style: italic; }
+  .projects cite {
+    font-style: normal; }
+  .projects .project-desc {
+    background-color: #fffcfa;
+    width: 40%;
+    min-width: 300px;
+    max-width: 900px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2%;
+    margin: 2%;
+    box-shadow: 1px 2px 3px 4px silver;
+    font-size: 16pt; }
+    .projects .project-desc h3, .projects .project-desc .wordpress h4, .wordpress .projects .project-desc h4 {
+      margin: 7%; }
 
 .wordpress {
   flex-wrap: wrap; }
@@ -376,11 +348,13 @@ a {
     align-items: space-around; }
     .wordpress .headings * {
       width: 100%; }
-  .wordpress h2, .wordpress h3 {
+  .wordpress h3, .wordpress h4 {
     text-shadow: none;
+    font-size: 34pt;
     z-index: 5;
-    border-bottom: solid #b8420f 1px; }
-  .wordpress h3 {
+    border-bottom: solid #b8420f 1px;
+    text-align: center; }
+  .wordpress h4 {
     font-size: 20pt; }
   .wordpress .holder {
     color: black;
@@ -391,7 +365,7 @@ a {
     margin: 15px;
     flex-grow: 1;
     width: 40%;
-    opacity: 0.4; }
+    opacity: 0.7; }
     .wordpress a:hover {
       overflow: hidden;
       margin: 11px;
@@ -410,29 +384,33 @@ a {
 .wp2 {
   background-image: url("../images/project-icons/momblogtheme.jpg"); }
 
-.other-projects h2, .other-projects .wordpress h3, .wordpress .other-projects h3 {
-  width: 100%; }
-.other-projects .img-wrapper {
-  display: inline-flex;
-  align-items: center;
-  overflow: hidden;
-  background-color: white;
-  background-blend-mode: luminosity;
-  max-width: 300px; }
-  .other-projects .img-wrapper:hover {
-    background-blend-mode: normal; }
-    .other-projects .img-wrapper:hover a {
-      padding: 50% 0;
-      background-color: rgba(250, 250, 250, 0.6);
-      color: #b8420f; }
-  .other-projects .img-wrapper a {
-    background-color: rgba(50, 50, 50, 0.6);
-    text-align: center;
-    width: 100%;
-    color: white;
-    font-weight: 800;
-    text-decoration: none;
-    transition: all 0.5s; }
+.other-projects {
+  display: flex;
+  flex-wrap: wrap; }
+  .other-projects h3, .other-projects .wordpress h4, .wordpress .other-projects h4 {
+    font-size: 16pt; }
+
+.final-desc {
+  font-size: 16pt;
+  color: black;
+  border: double black 8px;
+  background-color: #fffcfa;
+  flex-grow: 1;
+  padding: 2%; }
+  .final-desc p {
+    padding: 10px 5%; }
+
+.automagic {
+  background-image: url(../images/project-icons/automagic.jpg); }
+
+.opinionated {
+  background-image: url(../images/project-icons/opinionated.jpg); }
+
+.museummap {
+  background-image: url(../images/project-icons/map.jpg); }
+
+.rlimg {
+  background-image: url(../images/project-icons/rl.jpg); }
 
 .hydrangeas {
   background-image: url("../images/project-icons/hydrangeas.jpg"); }
@@ -458,68 +436,14 @@ a {
 .wiki {
   background-image: url("../images/project-icons/wiki.jpg"); }
 
-.portfolio {
-  background-image: url("../images/project-icons/portfolio.jpg"); }
-
-.rogue-like {
-  border-top-color: white;
-  border-top-width: 1px;
-  border-top-style: solid; }
-  .rogue-like h2, .rogue-like .wordpress h3, .wordpress .rogue-like h3 {
-    font-size: 34pt;
-    margin: 0; }
-  .rogue-like p {
-    text-align: center; }
-
-.rl-wrapper {
-  width: 90%;
-  height: 76%;
-  border: solid #b8420f 3px;
-  overflow: hidden;
-  cursor: pointer; }
-  .rl-wrapper p {
-    position: relative;
-    top: 40%;
-    font-family: 'Courier', 'sans-serif';
-    font-size: 16pt;
-    text-align: center; }
-  .rl-wrapper .allScreens {
-    display: flex;
-    margin: auto;
-    align-items: flex-start;
-    justify-content: stretch;
-    counter-reset: skillIcon; }
-  .rl-wrapper .centered-block {
-    margin: auto;
-    display: block; }
-  .rl-wrapper .skillIcon {
-    color: white;
-    border-bottom: solid white 1px;
-    margin-top: 2px; }
-  .rl-wrapper .skillIcon::before {
-    counter-increment: skillIcon;
-    content: counter(skillIcon) ": "; }
-  .rl-wrapper .skillBar {
-    color: white;
-    height: 90vh;
-    min-width: 60px;
-    max-width: 180px;
-    background-color: #323232;
-    flex-grow: 1;
-    padding: 5px; }
-
-.rl-desc {
-  color: black;
-  border: double black 8px;
-  background-color: white; }
-  .rl-desc p {
-    padding: 10px 5%; }
-
 .about {
   align-items: flex-end;
   font-size: 16pt; }
 
 .mask-off {
+  border-radius: 50%;
+  width: 250px;
+  height: 250px;
   background-image: url("../images/other/get_in_touch.jpg");
   background-position: 60%;
   margin: 3% auto; }
@@ -527,10 +451,16 @@ a {
 .screen {
   width: 100%;
   background-color: white;
+  padding: 5px;
   color: black; }
   .screen p {
     padding: 1%;
     text-align: justify; }
+  .screen p.center {
+    text-align: center; }
+    .screen p.center em {
+      font-size: 20pt;
+      text-rendering: optimizeLegibility; }
 
 .contact-section {
   font-size: 16pt; }
@@ -541,6 +471,10 @@ a {
     text-align: center;
     display: flex;
     align-items: center; }
+  .contact-section .block p {
+    display: inherit;
+    width: 25%;
+    margin: auto; }
 
 .contact {
   background-color: rgba(20, 20, 20, 0.4);
@@ -595,31 +529,30 @@ a {
     justify-content: center; }
     .footer .footer-element:last-of-type {
       border: none; }
+  .footer .closing {
+    background-image: url(../images/other/curly-open.png);
+    transform: scaleX(-1);
+    background-size: contain;
+    background-repeat: no-repeat; }
 
-@media only screen and (min-width: 1000px) {
-  .orange-backdrop1 {
-    background-image: url("../images/backdrops/leaves-medium.jpg"); }
-
-  .blue-backdrop1 {
-    background-image: url("../images/backdrops/trees-medium.jpg"); }
-
+@media only screen and (min-width: 1025px) {
   .blue-backdrop2 {
     background-image: url("../images/backdrops/flags-medium.jpg"); } }
 @media only screen and (max-width: 600px) {
-  .blue-backdrop2 {
-    background-blend-mode: normal; }
-
+  .landing .middle {
+    padding: 0;
+    background: white; }
   .landing .front-heading {
-    margin-left: 10%; }
+    margin-left: 5%;
+    width: 90%; }
+    .landing .front-heading h1 {
+      font-size: 34pt; }
   .landing .tagline {
     height: 50px; }
     .landing .tagline span .social {
       height: 28px;
       width: 28px; } }
 @media only screen and (max-width: 350px) {
-  .rl-desc p {
-    line-height: 12pt; }
-
   .contact .submitButton {
     float: none;
     width: 90%;
@@ -628,8 +561,6 @@ a {
     height: 40px;
     display: block; }
 
-  .wordpress .headings h3 {
-    display: none; }
   .wordpress a {
     overflow: hidden;
     height: 100px; }
@@ -649,17 +580,9 @@ a {
   .landing .middle .intro-text {
     width: 100%;
     font-size: 16pt; }
-  .landing .tagline {
-    align-self: center;
-    position: relative;
-    bottom: 10%; }
-    .landing .tagline big {
-      display: none; }
-    .landing .tagline span {
-      line-height: 14px; }
-      .landing .tagline span .social {
-        height: 30px;
-        width: 30px; }
+  .landing .tagline span .social {
+    height: 30px;
+    width: 30px; }
   .landing nav {
     font-size: 11pt;
     flex-wrap: wrap; }
