@@ -94,7 +94,7 @@ app.get('/yelp/:name/:loc', function(req, res){
 
 app.get('/', function(req, res){
 	app.use(express.static(__dirname + '/../portfolio/'));
-	res.sendFile(path.join(__dirname + '/../portfolio/html/index.html'));
+	res.sendFile(path.join(__dirname + '/../portfolio/index.html'));
 });
 
 
