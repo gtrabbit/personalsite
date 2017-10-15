@@ -78,22 +78,22 @@ const makeScrolly = function(){
 	let count = 0;
 	let height = window.innerHeight;
 	let width = window.innerWidth;
-	let speed;
+	let offset;
 	if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream){
-		speed = 2;
+		offset = height * 4;
 	} else {
-		speed = (height / width)*2;
+		offset = 0;
 	}
 	
 	window.onscroll = ()=>{
 		if (count % 4 === 0){
-			console.log(speed)
 			faders.forEach(function(a){
 	 		a.style.opacity =  1 - Math.pow( Math.abs( ( ( (window.innerHeight - (a.scrollHeight  ) )  /2) - (a.offsetTop - window.scrollY ) ) / (window.innerHeight/2)  ), 3 )
 	 		})
 		paraEls.forEach((el) => {
 			value = (window.pageYOffset - el.offsetTop + window.innerHeight)
-			let yPos = -(value / speed);
+			let yPos = -(value / 8);
+			if (el.id === "flags") yPos += offset;
 			let coords = '50% ' + yPos + 'px';
 			el.style.backgroundPosition = coords;
 		})
