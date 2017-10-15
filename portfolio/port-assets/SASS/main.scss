@@ -57,6 +57,23 @@ a{
 
 //====classes-------------
 
+	.quote-holder {
+		width: 50%;
+		margin: auto;
+
+		blockquote{
+			@extend %emphasis;
+			margin: 5%;
+			width: 100%;
+			font-size: $med-font + 10pt;
+		}
+		figcaption{
+			@extend %emphasis;
+			font-size: $med-font;
+
+		}
+	}
+
 
 	.img-wrapper{
 		margin: 2%;
@@ -162,7 +179,6 @@ a{
 .blue-backdrop2{
 	@extend %backdrop-area;
 	background-image: url('../images/backdrops/prayerflags-tall.jpg');
-	background-blend-mode: exclusion;
 }
 
 //============= Landing =======>>>>>>>>
@@ -304,23 +320,7 @@ a{
 	align-content: center;
 	@extend %backdrop-area;
 	background-image: url(../images/backdrops/leaves-tall.jpg);
-	
-	blockquote{
-		@extend %emphasis;
-		margin: 5%;
-		width: 100%;
-		font-size: $med-font + 10pt;
-	}
-	figcaption{
-		@extend %emphasis;
-		font-size: $med-font;
 
-	}
-
-	.quote-holder {
-		width: 50%;
-		margin: auto;
-	}
 }
 
 
@@ -387,12 +387,7 @@ a{
 			text-decoration: none;
 			transition: all 0.5s;
 			text-shadow: 1px 1px 1px black;
-			p {
-				margin: 2% 0;
-				@extend h2;
-				font-size: $big-font;
 
-			}
 		}
 	}
 
@@ -403,6 +398,8 @@ a{
 	width: 100%;
 	overflow: hidden;
 	justify-content: space-evenly;
+	display: flex;
+	flex-wrap: wrap;
 	
 	.project-desc.automagic-project{
 		flex-grow: 2;
@@ -413,8 +410,6 @@ a{
 		text-align: center;
 	}
 
-	display: flex;
-	flex-wrap: wrap;
 
 	.project-icon {
 		width: 300px;
@@ -446,7 +441,7 @@ a{
 		box-shadow: 1px 2px 3px 4px silver;
 		font-size: $med-font;
 		h3 {
-			margin: 7%;
+			margin: 3% auto;
 		}
 	}
 
@@ -647,6 +642,7 @@ $margin-width: 15px;
 
 .contact-section{
 	font-size: $med-font;
+	margin-top: 5%;
 	p{
 		padding: 0 2%;
 		background-color: rgba(20,20,20,0.4);
@@ -704,7 +700,12 @@ $margin-width: 15px;
 }
 
 
+.flags {
+	display: flex;
+	align-items: center;
+	height: 100vh;
 
+}
 
 
 //=========footer========>>>>>>>>>>
@@ -735,11 +736,33 @@ $margin-width: 15px;
 		}
 	}
 
+	.footer-navigation {
+		max-width: 30%;
+	}
+
+	.footer-wrapper {
+		display: flex;
+		flex-wrap: wrap;
+		width: 60%;
+		flex-grow: 1;
+		.footer-element {
+			min-width: 200px;
+		}
+	}
+
 	.closing {
 		background-image: url(../images/other/curly-open.png);
 		transform: scaleX(-1);
 		background-size: contain;
 		background-repeat: no-repeat;
+
+		div {
+			transform: scaleX(-1);
+			a {
+				width: 100%;
+				display: block;
+			}
+		}
 	}
 
 }
@@ -753,7 +776,7 @@ $margin-width: 15px;
 
 
 //load wider backdrops for large displays
-@media only screen and (min-width: 1025px){
+@media only screen and (min-width: 1080px){
 
 
 .blue-backdrop2{
@@ -764,6 +787,25 @@ $margin-width: 15px;
 
 //medium displays
 @media only screen and (max-width: 600px){
+
+	.closing {
+		padding: 2%;
+		h3 {
+			font-size: $med-font;
+		}
+	} 
+
+	.footer-social-links.footer-element {
+		border: none;
+		border-bottom: dashed silver 1px;
+	}
+
+	.quote-holder {
+		width: 80%;
+		blockquote{
+			font-size: $med-font;
+		}
+	}
 
 	.landing{
 		.middle {
@@ -859,5 +901,6 @@ $margin-width: 15px;
 				flex-grow: 1;
 			}
 		}
-	} 
+	}
+
 }

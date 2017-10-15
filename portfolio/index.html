@@ -77,6 +77,9 @@
 						<img src="port-assets/images/other/python_icon.png" class="icon fader">
 						<img src="port-assets/images/other/node.png" class="icon fader">
 						<img src="port-assets/images/other/php.7.1.10.svg" class="icon fader">
+						<img src="port-assets/images/other/nginx.png" class="icon fader">
+						<img src="">
+						<img src="port-assets/images/other/apache.png" class="icon fader">
 						
 					</div>
 					<div>
@@ -115,10 +118,8 @@
 			<hr>
 
 			<div class="automagic-project project-desc" id="automagic">
-				<h3>
-					Automagic
-				</h3>
-				<div class="img-wrapper automagic medium"><a href="#" target="_blank"><p>View</p></a></div>
+		
+				<div class="img-wrapper automagic medium"><a href="https://automagic-legacy.herokuapp.com/" target="_blank"><h3>Automagic</h3></a></div>
 				<p class="project-text">
 						Full-stack MEAN application custom-built for Hudson Legal Group. Used by ~100 employees to enhance productivity. Reduces what was 30-60 minutes of work down to just a couple clicks. One happy writer has this to say:
 				</p><hr>
@@ -126,52 +127,66 @@
 						“From the very first PL I drafted, I have been imagining a tool like Automagic... I am practically gleeful every time I use Automagic! I think it's a great interface, so intuitive and easy to use, and I feel like the luckiest person in the A2 office for being able to use it already.”  
 					</blockquote>
 							<cite>Tani Bellestri, Legal Writing Specialist, Hudson PC, Ann Arbor</cite>
+							<hr>
+				<p>Legacy version (linked above) hosted on Heroku (free version, so give time for the instance to spin up) and deployed via the Heroku CLI. Functional version is hosted privately on company servers. Source is available on <a href="https://github.com/gtrabbit/newautomagic" target="_blank">GitHub</a>.  </p>
 			</div>
 			<div class="opinionated-project project-desc" id="opinionated">
-				<h3>Opinionated</h3>
-				<div class="img-wrapper opinionated medium" ><a href="#" target="_blank"><p>View</p></a></div>
+				
+				<div class="img-wrapper opinionated medium" ><a href="http://chrisrune.com/opinionated/" target="_blank"><h3>Opinionated</h3></a></div> <hr>
 
+				<p class="project-text">
+						Single-page application made with Python and Flask on the back-end and a fully responsive front-end. Interfaces with PostgreSQL database and serves versatile API in JSON format. Features secure log-in via OAuth2 to manage user-specific content.
+				</p> <br>
 				<p>
-						Single-page application made with Python and Flask on the back-end and a fully responsive front-end. Interfaces with SQL database and serves versatile API in JSON format. Features secure log-in via OAuth2 to manage user-specific content.
+					Application hosted internally by Python http server and reverse proxied through Nginx. View the <a href="https://github.com/gtrabbit/Opinionated" target="_blank">GitHub repository</a> for more info.
 				</p>
 
 			</div>
 			<div class="map-project project-desc" id="museum">
-				<h3>Museum +_</h3>
-				<div class="img-wrapper museummap medium"><a href="http://www.chrisrune.com/map" target="_blank"><p>View</p></a></div>
-				<p>
+				
+				<div class="img-wrapper museummap medium"><a href="http://www.chrisrune.com/index/map" target="_blank"><h3>Museum +_</h3></a></div>
+				<p class="project-text">
 					Single-page application integrating APIs via AJAX from Wikipedia, Google Maps and Yelp, offering users a dynamic, interactive experience. Fully responsive and adaptive layout for all devices and browsers.
+				</p> <br>
+				<p>
+					Along with this portfolio, this application is served by Node internally and reverse proxied through Nginx. View the code on <a href="https://github.com/gtrabbit/neighborhoodMap" target="_blank">GitHub</a>.
 				</p>
 			</div>
 			<div class="rl-project project-desc" id="rogueLike">
-				<h3>Javascript Rogue-like</h3>
-				<div class="img-wrapper rlimg medium"><a href="#" target="_blank"><p>View</p></a></div>
-				<p>
+				
+				<div class="img-wrapper rlimg medium"><a href="http://chrisrune.com/rl/" target="_blank"><h3>Javascript Rogue-like</h3></a></div>
+				<p class="project-text">
 					Javascript-based rogue-like game built with the ROT.js library and boat-loads of vanilla js. Heavily object-oriented in design, utilizing ES6 JS classes and prototypical inheritance to procedurally generate elements and make abstractions for content development. In constant development.
+				</p> <br>
+				<p>
+					Hosted directly here via Nginx. The current version uses React for its UI, but is not necessarily stable. You can <a href="https://github.com/gtrabbit/reactrl" target="_blank">view the source</a> on GitHub.
 				</p>
 				
 			</div>
 
-			
-			<div class="white-section wordpress" id="wordpress">
-				<div class="headings">
-					<h3> Wordpress </h2>
-					<h4 class="fader">
-						Custom Themes
-					</h4>
-					<h4 class="fader">
-						Responsive Layouts
-					</h4>
-					<h4 class="fader">
-						Full Customization w/ Plugins
-					</h4>
-				</div>
-				<a href="https://github.com/gtrabbit/wpmomblogtheme" target="_blank"><div class="img-wrapper large wp2"></div></a>
-				<a href="https://github.com/gtrabbit/wprestauranttheme" target="_blank"><div class="img-wrapper large wp1"></div></a>
+			<div class="blog-project project-desc" id="wordpress">
 				
+				<div class="img-wrapper wp2 medium"><a href="http://chrisrune.com/wordpress/" target="_blank"><h3>WordPress Blog Theme</h3></a></div>
+				<p class="project-text">
+					Fully responsive WordPress theme incorporating built-in action hooks and PHP functions for blog development. Unit tested using the standard WordPress test data.
+				</p> <br>
+				<p>
+					Served via Nginx and PHP. The source code is available on <a href="https://github.com/gtrabbit/wpmomblogtheme" target="_blank">GitHub</a>.
+				</p>
 				
 			</div>
-			
+
+			<div class="wp-project project-desc" id="custom-theme">
+				
+				<div class="img-wrapper wp1 medium"><a href="http://chrisrune.com/custom/" target="_blank"><h3>Custom WordPress Theme</h3></a></div>
+				<p class="project-text">
+					Custom WordPress theme leveraging multiple plug-ins to give users full control over content within a unique layout. Fully responsive, adaptive and cross-browser compatible.
+				</p> <br>
+				<p>
+					Again, served via Nginx and PHP. The source code is available on <a href="https://github.com/gtrabbit/wprestauranttheme" target="_blank">GitHub</a>.
+				</p>
+				
+			</div>
 
 
 			<div class="other-projects" id="otherProjects">
@@ -209,13 +224,16 @@
 
 		</section>
 		<section class="blue-backdrop2 parallax" id="flags">
-			<div class="auto-page">
-
+			<div class="auto-page flags">
+				<div class="quote-holder">
+				<blockquote>"...each hung bell's / bow swung finds tongue to fling out broad its name;"</blockquote>
+				<figcaption>-Gerard Manley Hopkins</figcaption>
+			</div>
 		
 			</div>
-			<div class="full-page">
+
 				<img src="#" style="display: none" alt="This page intentionally left blank">
-			</div>
+
 			<div class="auto-page about" id="about">
 			
 				<div class="screen">
@@ -226,7 +244,7 @@
 					</p>
 
 					<p>
-						Now, people always ask how I was able to make such a big transition. Honestly, there doesn't seem to be much different between the two. Code and Poetry usually serve different purposes, yet the underlying skills are mostly homologous. However, it's impossible to explain this without launching into a drawn-out speech. Meanwhile, the vast majority of people who write poetry don't know much about code, and the vast majority of coders don't know much about poetry. In the end, I find it is easier just to say the transition was difficult, simply because most people like to hear what they already believe.  
+						Now, people always ask how I was able to make such a big transition. Honestly, there doesn't seem to be much different between the two. Code and Poetry usually serve different purposes, yet the underlying skills are mostly homologous. However, it's impossible to explain this without launching into a drawn-out speech. Meanwhile, the vast majority of people who write poetry don't know much about code, and the vast majority of coders don't know much about poetry. In the end, I find it is easier just to say the transition was difficult.
 					</p>
 					<hr>
 					<p class="center">
@@ -266,7 +284,7 @@
 
 	</main>
 	<footer class="footer">
-		<div class="footer-element">
+		<div class="footer-element footer-navigation">
 			<div> Navigation:
 				<p><a href="#skills">Skills / Experience</a></p>
 				<p><a href="#automagic">Single-page applications</a></p>
@@ -277,14 +295,25 @@
 				<p><a href="#contact">Contact</a></p>
 			</div>
 		</div>
-		<div class="footer-element">
+		<div class="footer-wrapper">
+		<div class="footer-element footer-social-links">
 			<p class="make-block">Use the internet:</p><br>
 			<a href="https://github.com/gtrabbit" target="_blank"><img class="social" src="port-assets/images/other/codepenlogo.png"></a>
 			<a href="http://codepen.io/gtrabbit/" target="_blank"><img src="port-assets/images/other/github-logo-icon-30.png" class="social"></a>
 			<a href="https://www.linkedin.com/in/chris-rune/" target="_blank"><img src="port-assets/images/other/linkedlogo.png" class="social"></a>
 		</div>
 		<div class="footer-element closing">
-			<p></p>
+			
+			<div>
+				<h3>Projects</h3>
+				<a href="http://chrisrune.com/index/map/" target="_blank">Mapping Application</a>
+				<a href="http://chrisrune.com/wordpress/" target="_blank">WordPress Blog Theme</a>
+				<a href="http://chrisrune.com/custom/" target="_blank">Custom WordPress Theme</a>
+				<a href="http://chrisrune.com/opinionated/" target="_blank">Single-page Python Application</a>
+				<a href="https://automagic-legacy.herokuapp.com/" target="_blank">MEAN Stack / Angular 2 Single-page Application</a>
+				<a href="http://chrisrune.com/rl/">JavaScript Rogue-like</a>
+			</div>
+		</div>
 		</div>
 	</footer>
 

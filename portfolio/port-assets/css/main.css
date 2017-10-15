@@ -1,4 +1,4 @@
-.first-break blockquote, .first-break figcaption {
+.quote-holder blockquote, .quote-holder figcaption {
   font-style: italic;
   color: whitesmoke;
   text-shadow: 1px 2px 4px #505050;
@@ -30,7 +30,7 @@ body, p {
   margin: 0px;
   font-family: 'Open Sans Condensed', sans-serif; }
 
-h1, h2, .img-wrapper a p, h3, .wordpress h4, h4, h5 {
+h1, h2, h3, .wordpress h4, h4, h5 {
   margin: 0;
   font-family: 'Artifika', serif;
   text-rendering: optimizeLegibility; }
@@ -40,7 +40,7 @@ h1 {
   font-weight: 500;
   text-shadow: 2px 2px 2px darkslategrey; }
 
-h2, .img-wrapper a p {
+h2 {
   text-align: center;
   margin: 2% 1%;
   font-size: 34pt; }
@@ -59,6 +59,16 @@ a {
     color: #0f85b8; }
   a:hover {
     color: #c0b08c; }
+
+.quote-holder {
+  width: 50%;
+  margin: auto; }
+  .quote-holder blockquote {
+    margin: 5%;
+    width: 100%;
+    font-size: 26pt; }
+  .quote-holder figcaption {
+    font-size: 16pt; }
 
 .img-wrapper {
   margin: 2%;
@@ -136,8 +146,7 @@ a {
   color: white; }
 
 .blue-backdrop2 {
-  background-image: url("../images/backdrops/prayerflags-tall.jpg");
-  background-blend-mode: exclusion; }
+  background-image: url("../images/backdrops/prayerflags-tall.jpg"); }
 
 .landing {
   width: 100%;
@@ -241,15 +250,6 @@ a {
   display: flex;
   align-content: center;
   background-image: url(../images/backdrops/leaves-tall.jpg); }
-  .first-break blockquote {
-    margin: 5%;
-    width: 100%;
-    font-size: 26pt; }
-  .first-break figcaption {
-    font-size: 16pt; }
-  .first-break .quote-holder {
-    width: 50%;
-    margin: auto; }
 
 .icon {
   height: 100px;
@@ -294,9 +294,6 @@ a {
     text-decoration: none;
     transition: all 0.5s;
     text-shadow: 1px 1px 1px black; }
-    .img-wrapper a p {
-      margin: 2% 0;
-      font-size: 34pt; }
 
 .projects {
   border-top: solid #3f4f73 4px;
@@ -308,7 +305,7 @@ a {
   .projects .project-desc.automagic-project {
     flex-grow: 2;
     width: 100%; }
-  .projects h2, .projects .img-wrapper a p, .img-wrapper a .projects p, .projects h3, .projects .wordpress h4, .wordpress .projects h4 {
+  .projects h2, .projects h3, .projects .wordpress h4, .wordpress .projects h4 {
     width: 100%;
     text-align: center; }
   .projects .project-icon {
@@ -335,7 +332,7 @@ a {
     box-shadow: 1px 2px 3px 4px silver;
     font-size: 16pt; }
     .projects .project-desc h3, .projects .project-desc .wordpress h4, .wordpress .projects .project-desc h4 {
-      margin: 7%; }
+      margin: 3% auto; }
 
 .wordpress {
   flex-wrap: wrap; }
@@ -463,7 +460,8 @@ a {
       text-rendering: optimizeLegibility; }
 
 .contact-section {
-  font-size: 16pt; }
+  font-size: 16pt;
+  margin-top: 5%; }
   .contact-section p {
     padding: 0 2%;
     background-color: rgba(20, 20, 20, 0.4);
@@ -507,6 +505,11 @@ a {
     .contact label input {
       width: 60%; }
 
+.flags {
+  display: flex;
+  align-items: center;
+  height: 100vh; }
+
 .footer {
   overflow: hidden;
   background-color: #312b1b;
@@ -529,16 +532,44 @@ a {
     justify-content: center; }
     .footer .footer-element:last-of-type {
       border: none; }
+  .footer .footer-navigation {
+    max-width: 30%; }
+  .footer .footer-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    width: 60%;
+    flex-grow: 1; }
+    .footer .footer-wrapper .footer-element {
+      min-width: 200px; }
   .footer .closing {
     background-image: url(../images/other/curly-open.png);
     transform: scaleX(-1);
     background-size: contain;
     background-repeat: no-repeat; }
+    .footer .closing div {
+      transform: scaleX(-1); }
+      .footer .closing div a {
+        width: 100%;
+        display: block; }
 
-@media only screen and (min-width: 1025px) {
+@media only screen and (min-width: 1080px) {
   .blue-backdrop2 {
     background-image: url("../images/backdrops/flags-medium.jpg"); } }
 @media only screen and (max-width: 600px) {
+  .closing {
+    padding: 2%; }
+    .closing h3, .closing .wordpress h4, .wordpress .closing h4 {
+      font-size: 16pt; }
+
+  .footer-social-links.footer-element {
+    border: none;
+    border-bottom: dashed silver 1px; }
+
+  .quote-holder {
+    width: 80%; }
+    .quote-holder blockquote {
+      font-size: 16pt; }
+
   .landing .middle {
     padding: 0;
     background: white; }
