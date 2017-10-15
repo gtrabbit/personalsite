@@ -76,6 +76,9 @@ const makeScrolly = function(){
 	let paraEls = Array.from(document.getElementsByClassName('parallax'));
 	let flags = document.getElementById('flags');
 	let count = 0;
+	let height = window.innerHeight;
+	let width = window.innerWidth;
+	let speed = (height / width)*2;
 	window.onscroll = ()=>{
 		if (count % 4 === 0){
 			faders.forEach(function(a){
@@ -83,7 +86,7 @@ const makeScrolly = function(){
 	 		})
 		paraEls.forEach((el) => {
 			value = (window.pageYOffset - el.offsetTop + window.innerHeight)
-			let yPos = -(value / 8);
+			let yPos = -(value / speed);
 			let coords = '50% ' + yPos + 'px';
 			el.style.backgroundPosition = coords;
 		})
