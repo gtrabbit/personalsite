@@ -78,7 +78,12 @@ const makeScrolly = function(){
 	let count = 0;
 	let height = window.innerHeight;
 	let width = window.innerWidth;
-	let speed = (height / width)*2;
+	if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream){
+		let speed = 2;
+	} else {
+		let speed = (height / width)*2;
+	}
+	
 	window.onscroll = ()=>{
 		if (count % 4 === 0){
 			faders.forEach(function(a){
