@@ -78,14 +78,16 @@ const makeScrolly = function(){
 	let count = 0;
 	let height = window.innerHeight;
 	let width = window.innerWidth;
+	let speed;
 	if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream){
-		let speed = 2;
+		speed = 2;
 	} else {
-		let speed = (height / width)*2;
+		speed = (height / width)*2;
 	}
 	
 	window.onscroll = ()=>{
 		if (count % 4 === 0){
+			console.log(speed)
 			faders.forEach(function(a){
 	 		a.style.opacity =  1 - Math.pow( Math.abs( ( ( (window.innerHeight - (a.scrollHeight  ) )  /2) - (a.offsetTop - window.scrollY ) ) / (window.innerHeight/2)  ), 3 )
 	 		})
