@@ -60,6 +60,7 @@ a{
 	.quote-holder {
 		width: 50%;
 		margin: auto;
+		align-self: center;
 
 		blockquote{
 			@extend %emphasis;
@@ -83,7 +84,7 @@ a{
 		background-repeat: no-repeat;
 		border: $standard-border;
 		box-shadow: 1px 2px 5px 2px #191f1f;
-		min-height: 150px;
+		height: 150px;
 	}
 
 
@@ -239,7 +240,7 @@ a{
 	}
 	.front-heading{
 		white-space: nowrap;
-		flex: 1;
+		flex-grow: 1;
 		justify-self: flex-end;
 		h1{
 			@include simple-border($link-color, 'bottom');
@@ -397,7 +398,7 @@ a{
 	border-top: solid $link-color 4px;
 	width: 100%;
 	overflow: hidden;
-	justify-content: space-evenly;
+	justify-content: space-around;
 	display: flex;
 	flex-wrap: wrap;
 	
@@ -418,6 +419,7 @@ a{
 	}
 	.project-text {
 		font-weight: 600;
+		width: 100%;
 	}
 
 	blockquote {
@@ -442,6 +444,9 @@ a{
 		font-size: $med-font;
 		h3 {
 			margin: 3% auto;
+		}
+		* {
+			width: 100%;
 		}
 	}
 

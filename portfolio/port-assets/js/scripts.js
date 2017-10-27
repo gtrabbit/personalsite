@@ -8,14 +8,6 @@ window.onload = function(){
 const makeEventListeners = function(){
 
 
-	//adds listeners to navigation
-	Array.from(document.getElementsByClassName('navLink')).forEach(function(a){
-		a.addEventListener('click', function(){
-			smoothScroll(a.id.slice(0, -4));
-		})
-	})
-
-
 	//listener for mailing button
 	document.getElementById('contactForm').addEventListener('submit', function(e){
 		e.preventDefault();
@@ -60,6 +52,9 @@ const sendMail = function(){
 const smoothScroll = function(elID){
 	let node = document.getElementById(elID);
 	let speed = Math.ceil(node.offsetTop / 30);
+
+		console.log(speed)
+		
 	for (let i = 0; i <30; i++){
 
 		window.setTimeout(function(){

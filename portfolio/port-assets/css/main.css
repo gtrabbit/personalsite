@@ -62,7 +62,8 @@ a {
 
 .quote-holder {
   width: 50%;
-  margin: auto; }
+  margin: auto;
+  align-self: center; }
   .quote-holder blockquote {
     margin: 5%;
     width: 100%;
@@ -78,7 +79,7 @@ a {
   background-repeat: no-repeat;
   border: solid black 1px;
   box-shadow: 1px 2px 5px 2px #191f1f;
-  min-height: 150px; }
+  height: 150px; }
 
 .float-left {
   float: left; }
@@ -192,7 +193,7 @@ a {
       margin: 3%; }
   .landing .front-heading {
     white-space: nowrap;
-    flex: 1;
+    flex-grow: 1;
     justify-self: flex-end; }
     .landing .front-heading h1 {
       border-bottom-color: #3f4f73;
@@ -299,7 +300,7 @@ a {
   border-top: solid #3f4f73 4px;
   width: 100%;
   overflow: hidden;
-  justify-content: space-evenly;
+  justify-content: space-around;
   display: flex;
   flex-wrap: wrap; }
   .projects .project-desc.automagic-project {
@@ -313,7 +314,8 @@ a {
     border: solid black 3px;
     border-radius: 8px; }
   .projects .project-text {
-    font-weight: 600; }
+    font-weight: 600;
+    width: 100%; }
   .projects blockquote {
     font-style: italic; }
   .projects cite {
@@ -333,6 +335,8 @@ a {
     font-size: 16pt; }
     .projects .project-desc h3, .projects .project-desc .wordpress h4, .wordpress .projects .project-desc h4 {
       margin: 3% auto; }
+    .projects .project-desc * {
+      width: 100%; }
 
 .wordpress {
   flex-wrap: wrap; }
