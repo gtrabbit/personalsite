@@ -116,7 +116,7 @@ const BTcallback = function(results){
 		
 
 	//Yelp request has to be made via our server because of security, i guess
-	fetch('/yelp/' + results[0].name  + '/' + results[0].vicinity, {
+	fetch('yelp/' + results[0].name  + '/' + results[0].vicinity, {
 		method: 'get'
 	}).then(function(response){
 		return response.json();
