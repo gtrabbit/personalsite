@@ -90,6 +90,7 @@ const callback = function(results, status){
 	};
 
 const performSearch = function(){
+	
 	let request = {
 		location: map.eastend,
 		radius: '10000',
@@ -194,7 +195,6 @@ const getDirections = function(dest){
 //define the view-model
 const AppViewModel = new function(){  //jshint ignore:line
 	this.markers = ko.observableArray();
-	const that = this;
 	this.destination = ko.observable(map.destinationMarker);
 	this.filtered = ko.observable(false);
 	this.filterWord = ko.observable('');
@@ -239,10 +239,10 @@ const AppViewModel = new function(){  //jshint ignore:line
 		}
 
 	};
-	this.showItem = function(that, marker){
-		that.selectedMuseum(marker);
+	this.showItem = function(marker){
+		this.selectedMuseum(marker);
 		findBubbleTea(marker);
-	};
+	}.bind(this);
 
 	this.undoFilter = function(){
 		this.filtered(false);
@@ -268,15 +268,15 @@ const AppViewModel = new function(){  //jshint ignore:line
 			this.hiderText('*show*')
 		}
 	};
-	this.slideUp = function(that, data, event){
+	this.slideUp = function(data, event){
 		let h = event.target.parentNode.style.height;
 		event.target.parentNode.style.height = h == "12px" ? "33vh" : "12px";
-		if (that.sliderText() == '▼'){
-			that.sliderText('▲')
+		if (this.sliderText() == '▼'){
+			this.sliderText('▲')
 		} else {
-			that.sliderText('▼');
+			this.sliderText('▼');
 		}
-	};
+	}.bind(this);
 	this.sliderText = ko.observable('▲');
 
 };
