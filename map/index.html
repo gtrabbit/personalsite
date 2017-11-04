@@ -3,7 +3,7 @@
 <head>
 	<script src="/assets/js/knockout.js"></script>
 	<script src="/assets/js/scripts.js"></script>
-	<script src="/assets/js/mapStyle.js"></script>
+
 
 	<link rel="apple-touch-icon" sizes="180x180" href="/assets/favicons/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicons/favicon-32x32.png">
@@ -19,7 +19,7 @@
 	<title>Museum + Bubble Tea</title>
 </head>
 <body>
-
+<!-- 	<div class="main-wrapper"> -->
 	<main>
 		<header class="header">
 			<h1>
@@ -102,6 +102,7 @@
 
 	
 	</main>
+<!-- 	</div> -->
 	<div id="directionsPanel" class="directionsPanel"></div>
 	<footer>
 		<a data-bind="click: toggleAbout" class="fakeLink">About</a>
@@ -112,7 +113,7 @@
 
 
 	<script async defer src="https://maps.googleapis.com/maps/api/js?libraries=places,geometry&key=AIzaSyCHQWxlixdMrK1f1L0d4EuwiOTPBjQmpes&v=3&callback=initMap" onerror="showFallback()"></script>
-
+	<script src="/assets/js/mapStyle.js" async defer></script>
 
 
 </body>

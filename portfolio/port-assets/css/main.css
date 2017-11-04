@@ -300,7 +300,7 @@ a {
   border-top: solid #3f4f73 4px;
   width: 100%;
   overflow: hidden;
-  justify-content: space-around;
+  justify-content: safe center;
   display: flex;
   flex-wrap: wrap; }
   .projects .project-desc.automagic-project {
@@ -322,8 +322,8 @@ a {
     font-style: normal; }
   .projects .project-desc {
     background-color: #fffcfa;
-    width: 40%;
     min-width: 300px;
+    width: 30%;
     max-width: 900px;
     flex-grow: 1;
     display: flex;

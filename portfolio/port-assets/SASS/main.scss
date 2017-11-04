@@ -398,7 +398,7 @@ a{
 	border-top: solid $link-color 4px;
 	width: 100%;
 	overflow: hidden;
-	justify-content: space-around;
+	justify-content: safe center;
 	display: flex;
 	flex-wrap: wrap;
 	
@@ -431,8 +431,8 @@ a{
 
 	.project-desc {
 		background-color: $box-background;
-		width: 40%;
 		min-width: 300px;
+		width: 30%;
 		max-width: 900px;
 		flex-grow: 1;
 		display: flex;

@@ -61,9 +61,9 @@ const becomeArrow = function(){
 };
 
 const makeMarkers = function(results, i){
-	window.setTimeout(()=>{
+	window.setTimeout(function(){
 		let marker = createMarker(results[i]);
-    	marker.addListener('click', ()=>{
+    	marker.addListener('click', function(){
     		findBubbleTea(marker);
     	AppViewModel.selectedMuseum(marker);
    	});
@@ -123,7 +123,7 @@ const BTcallback = function(results){
 	}).then(function(jso){
 		map.DestInfoWindow.setContent(createInfoDisplay(jso));
 		map.DestInfoWindow.open(map.map, map.destinationMarker);
-	}) .catch((err)=>{
+	}) .catch(function(err){
 		console.log(err)
 		map.DestInfoWindow.setContent('Could not find this location on Yelp');
 		map.DestInfoWindow.open(map.map, map.destinationMarker);
@@ -139,7 +139,7 @@ const getWikiInfo = function(marker){
 		return response.json();
 	}).then(function(jso){
 		AppViewModel.selectedMuseumInfo(jso);
-	}).catch(err=>{
+	}).catch(function(err){
 		console.log(err);
 		AppViewModel.selectedMuseumInfo({
 			extract_html: '<p>No Wikipedia page for this location.</p>',
@@ -155,7 +155,7 @@ const findBubbleTea = function(marker){
 	getWikiInfo(marker);
 
 
-	map.markerList.forEach(a=>{
+	map.markerList.forEach(function(a){
 		AppViewModel.endBouncing(a);
 	});
 	AppViewModel.startBouncing(marker);
@@ -194,6 +194,7 @@ const getDirections = function(dest){
 //define the view-model
 const AppViewModel = new function(){  //jshint ignore:line
 	this.markers = ko.observableArray();
+	const that = this;
 	this.destination = ko.observable(map.destinationMarker);
 	this.filtered = ko.observable(false);
 	this.filterWord = ko.observable('');
@@ -204,7 +205,7 @@ const AppViewModel = new function(){  //jshint ignore:line
 	this.about = ko.observable(false);
 	this.weNeedFallback = ko.observable(false);
 	this.hiderText = ko.observable('*hide*');
-	this.visibleMuseums = ko.computed(()=>{
+	this.visibleMuseums = ko.computed(function(){
 		if (this.filterWord()){
 			let filter = this.filterWord();
 			return this.markers().filter(function(a){
@@ -220,7 +221,7 @@ const AppViewModel = new function(){  //jshint ignore:line
 				
 			});
 		} else {
-			this.markers().forEach(a=>{
+			this.markers().forEach(function(a){
 				if (!a.visible){
 					a.setAnimation(google.maps.Animation.DROP);
 					a.setVisible(true);
@@ -229,7 +230,7 @@ const AppViewModel = new function(){  //jshint ignore:line
 			})
 			return this.markers();
 		}
-	});
+	}.bind(this));
 	this.toggleAbout = function(){
 		if (this.about()){
 			this.about(false);
@@ -238,8 +239,8 @@ const AppViewModel = new function(){  //jshint ignore:line
 		}
 
 	};
-	this.showItem = (marker) => {
-		this.selectedMuseum(marker);
+	this.showItem = function(that, marker){
+		that.selectedMuseum(marker);
 		findBubbleTea(marker);
 	};
 
@@ -267,13 +268,13 @@ const AppViewModel = new function(){  //jshint ignore:line
 			this.hiderText('*show*')
 		}
 	};
-	this.slideUp = (data, event)=>{
+	this.slideUp = function(that, data, event){
 		let h = event.target.parentNode.style.height;
 		event.target.parentNode.style.height = h == "12px" ? "33vh" : "12px";
-		if (this.sliderText() == '▼'){
-			this.sliderText('▲')
+		if (that.sliderText() == '▼'){
+			that.sliderText('▲')
 		} else {
-			this.sliderText('▼');
+			that.sliderText('▼');
 		}
 	};
 	this.sliderText = ko.observable('▲');
